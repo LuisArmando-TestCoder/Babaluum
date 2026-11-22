@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../tokens/colors" as *;
+
+@mixin tone-properties {
+  @each $name, $tone in $tones {
+    [data-tone="#{$name}"] {
+      --tone-bg: #{color(map.get($tone, "bg"))};
+      --tone-fg: #{color(map.get($tone, "fg"))};
+      --tone-muted: #{color(map.get($tone, "muted"))};
+      --tone-action-bg: #{color(map.get($tone, "action-bg"))};
+      --tone-action-fg: #{color(map.get($tone, "action-fg"))};
+    }
+  }
+}

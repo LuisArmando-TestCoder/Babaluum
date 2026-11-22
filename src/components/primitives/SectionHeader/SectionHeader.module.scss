@@ -1,0 +1,23 @@
+@use "design" as *;
+
+.header {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+
+  @include up("md") {
+    grid-template-columns: 1fr minmax(16rem, 22rem);
+  }
+}
+
+.main {
+  max-width: 44rem;
+}
+
+.aside {
+  @include body("body");
+
+  margin: 0;
+  color: var(--tone-muted, #{color("slate")});
+}

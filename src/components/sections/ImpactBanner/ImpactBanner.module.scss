@@ -1,0 +1,46 @@
+@use "sass:map";
+@use "design" as *;
+
+.banner {
+  --surface-radius: 2rem;
+
+  color: color("white");
+}
+
+.stage {
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 2.5rem) 2rem;
+}
+
+.title {
+  position: relative;
+  z-index: map.get($z, "content");
+  max-width: 13em;
+  margin: 0 auto;
+  font-family: $font-display;
+  font-size: map.get($type-scale, "hero");
+  font-weight: 400;
+  line-height: 0.98;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.foot {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  justify-content: space-between;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.note {
+  @include body("small");
+
+  max-width: 17rem;
+  margin: 0;
+}
+
+.logo {
+  --logo-contrast: #{color("purple")};
+
+  font-size: 1.1rem;
+}

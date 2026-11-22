@@ -1,0 +1,28 @@
+@use "design" as *;
+
+.media {
+  margin-bottom: 1.6rem;
+
+  img {
+    filter: grayscale(0.15);
+    transition:
+      scale $duration-slow $ease-out,
+      filter $duration-slow $ease-out;
+  }
+
+  .card:hover & img {
+    filter: grayscale(0);
+    scale: 1.05;
+  }
+}
+
+.name {
+  @include display("h3");
+
+  margin: 0 0 0.35rem;
+}
+
+.role {
+  margin: 0;
+  font-weight: 600;
+}

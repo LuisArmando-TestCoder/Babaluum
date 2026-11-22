@@ -1,0 +1,19 @@
+@use "design" as *;
+
+.section {
+  position: relative;
+  color: var(--tone-fg);
+  background: var(--tone-bg);
+}
+
+.s {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.m {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.l {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}

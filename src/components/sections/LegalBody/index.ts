@@ -1,0 +1,1 @@
+export { LegalBody } from "./LegalBody";

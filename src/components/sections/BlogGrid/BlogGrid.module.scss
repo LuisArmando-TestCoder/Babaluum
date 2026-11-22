@@ -1,0 +1,13 @@
+@use "design" as *;
+
+.grid {
+  display: grid;
+  gap: 3rem 1.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include up("sm") {
+    grid-template-columns: 1fr 1fr;
+  }
+}

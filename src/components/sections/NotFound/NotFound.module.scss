@@ -1,0 +1,56 @@
+@use "sass:map";
+@use "design" as *;
+
+.section {
+  color: color("white");
+  background: color("navy");
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 8rem 1.5rem 4rem;
+}
+
+.content {
+  position: relative;
+  z-index: map.get($z, "content");
+  display: grid;
+  justify-items: center;
+  max-width: 30rem;
+  text-align: center;
+}
+
+.sign {
+  display: grid;
+  place-items: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  margin-bottom: 2.5rem;
+  background: color("lime");
+  border: 0.35rem solid color("navy");
+  border-radius: 0.9rem;
+  outline: 0.25rem solid color("lime");
+  rotate: 45deg;
+
+  span {
+    font-family: $font-display;
+    font-size: 1.9rem;
+    color: color("navy");
+    rotate: -45deg;
+  }
+}
+
+.title {
+  @include display("h2");
+
+  margin: 0 0 1rem;
+}
+
+.text {
+  @include body("body");
+
+  margin: 0 0 2rem;
+  color: color("sky");
+}

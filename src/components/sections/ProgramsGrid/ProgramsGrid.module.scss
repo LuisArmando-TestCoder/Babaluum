@@ -1,0 +1,17 @@
+@use "design" as *;
+
+.grid {
+  display: grid;
+  gap: 1.1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include up("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include up("lg") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,10 @@
+@use "design" as *;
+
+.cusp {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: clamp(7rem, 12vw, 11.25rem);
+  translate: -50% 0;
+  fill: var(--cusp-fill, #{color("white")});
+}

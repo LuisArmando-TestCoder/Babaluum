@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "design" as *;
+
+.button {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 1.6rem;
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0;
+  border-radius: map.get($radius, "pill");
+  transition:
+    transform $duration-base $ease-spring,
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid color("purple");
+    outline-offset: 3px;
+  }
+
+  @include hover {
+    &:hover {
+      transform: translateY(-2px) rotate(-1.5deg);
+    }
+
+    &:hover .arrow {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.light {
+  color: color("navy");
+  background: color("white");
+}
+
+.dark {
+  color: color("white");
+  background: color("navy");
+}
+
+.accent {
+  color: color("white");
+  background: color("purple");
+}
+
+.label {
+  position: relative;
+}
+
+.arrow {
+  font-size: 1.25rem;
+  transition: transform $duration-base $ease-spring;
+}

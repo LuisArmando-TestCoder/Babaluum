@@ -1,0 +1,37 @@
+@use "design" as *;
+
+.cover {
+  margin-bottom: 4rem;
+}
+
+.article {
+  max-width: 52rem;
+}
+
+.heading {
+  @include display("h4");
+
+  margin: 2.5rem 0 1rem;
+}
+
+.paragraph {
+  @include body("body");
+
+  margin: 0 0 1rem;
+  color: color("slate");
+}
+
+.pull {
+  max-width: 18em;
+  margin: 4rem 0 2.5rem;
+}
+
+.pair {
+  display: grid;
+  gap: 1.75rem;
+  margin-bottom: 1rem;
+
+  @include up("sm") {
+    grid-template-columns: 1fr 1fr;
+  }
+}

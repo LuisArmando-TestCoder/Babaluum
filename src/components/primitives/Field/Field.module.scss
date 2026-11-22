@@ -1,0 +1,29 @@
+@use "design" as *;
+
+.field {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.label {
+  @include display("h4");
+
+  font-size: 1rem;
+}
+
+.control {
+  @include body("body");
+
+  padding: 0.5rem 0 0.75rem;
+  color: color("navy");
+  resize: vertical;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color("line");
+  transition: border-color $duration-base $ease-out;
+
+  &:focus-visible {
+    border-color: color("purple");
+    outline: none;
+  }
+}

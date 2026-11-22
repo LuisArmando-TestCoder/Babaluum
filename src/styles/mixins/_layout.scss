@@ -1,0 +1,20 @@
+@use "../tokens/spacing" as *;
+
+@mixin container {
+  width: min(100% - 2 * #{$gutter}, #{$container});
+  margin-inline: auto;
+}
+
+@mixin cover {
+  position: absolute;
+  inset: 0;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

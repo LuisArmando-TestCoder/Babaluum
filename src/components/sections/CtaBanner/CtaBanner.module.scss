@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "design" as *;
+
+.wrap {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.banner {
+  --surface-radius: 2rem;
+
+  color: color("white");
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  padding: clamp(4.5rem, 9vw, 7rem) 1.5rem clamp(3rem, 6vw, 4.5rem);
+  text-align: center;
+}
+
+.title {
+  position: relative;
+  z-index: map.get($z, "content");
+  margin: 0;
+  font-family: $font-display;
+  font-size: map.get($type-scale, "h1");
+  font-weight: 400;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.soft {
+  color: color("sky");
+}
+
+.slot {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.8em;
+  vertical-align: -0.04em;
+}

@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "design" as *;
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem 0.4rem;
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--tone-fg);
+  white-space: nowrap;
+  background: var(--tone-bg);
+  border-radius: map.get($radius, "pill");
+  box-shadow: 0 6px 18px color("shadow");
+}

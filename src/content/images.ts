@@ -1,0 +1,38 @@
+import type { ImageAsset } from "@/domain/design/media";
+
+const image = (folder: string, name: string, alt: string): ImageAsset => ({ src: `/images/${folder}/${name}.webp`, alt });
+
+export const IMAGES = {
+  stage: image("places", "stage", "Ponente compartiendo una charla frente a la comunidad Babaluum"),
+  teamTable: image("places", "team-table", "Tres personas colaborando alrededor de una laptop"),
+  loft: image("places", "loft", "Equipo trabajando en un estudio con luz cálida"),
+  studio: image("places", "studio", "Mesa de trabajo compartida en un espacio luminoso"),
+  windows: image("places", "windows", "Personas trabajando frente a grandes ventanales"),
+  workshop: image("places", "workshop", "Taller con dos personas creando contenido"),
+  moodboard: image("places", "moodboard", "Manos organizando un tablero de inspiración"),
+  desk: image("places", "desk", "Creador editando frente a su monitor"),
+  plants: image("places", "plants", "Laptop entre plantas junto a una ventana"),
+  shelf: image("projects", "shelf", "Pantalla con una campaña de productos"),
+  sketchbook: image("projects", "sketchbook", "Laptop y bocetos en un estudio"),
+  avatar: image("projects", "avatar", "Personaje digital en proceso de diseño"),
+  posters: image("projects", "posters", "Creador revisando piezas gráficas"),
+  wall: image("projects", "wall", "Estudio con carteles y equipo de grabación"),
+  illustration: image("projects", "illustration", "Ilustración colorida en un monitor"),
+  prototype: image("projects", "prototype", "Diseñador trabajando un prototipo"),
+  setup: image("projects", "setup", "Escritorio de edición con luces de colores"),
+  night: image("projects", "night", "Estudio creativo de noche"),
+  pencils: image("projects", "pencils", "Mesa con lápices y materiales de diseño"),
+  gallery: image("projects", "gallery", "Creadora frente a una pared de ilustraciones"),
+  andres: image("people", "andres", "Retrato de Andrés"),
+  mei: image("people", "mei", "Retrato de Mei"),
+  amara: image("people", "amara", "Retrato de Amara"),
+  lucia: image("people", "lucia", "Retrato de Lucía"),
+  carmen: image("people", "carmen", "Retrato de Carmen"),
+  diego: image("people", "diego", "Retrato de Diego"),
+  rosa: image("people", "rosa", "Retrato de Rosa"),
+  sofia: image("people", "sofia", "Retrato de Sofía"),
+  mateo: image("people", "mateo", "Retrato de Mateo sonriendo en su estudio"),
+  portraitOne: image("people", "portrait-1", "Retrato en blanco y negro de Marco"),
+  portraitTwo: image("people", "portrait-2", "Retrato en blanco y negro de Sofía"),
+  portraitThree: image("people", "portrait-3", "Retrato en blanco y negro de Emma"),
+} as const;

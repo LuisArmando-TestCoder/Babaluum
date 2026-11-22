@@ -1,0 +1,13 @@
+@use "design" as *;
+
+.surface {
+  position: relative;
+  overflow: hidden;
+  color: var(--tone-fg, inherit);
+  background: var(--tone-bg, transparent);
+  border-radius: var(--surface-radius, 1.75rem);
+
+  @include down("sm") {
+    --notch-scale: 0.7;
+  }
+}

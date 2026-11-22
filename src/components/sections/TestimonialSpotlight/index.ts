@@ -1,0 +1,1 @@
+export { TestimonialSpotlight } from "./TestimonialSpotlight";

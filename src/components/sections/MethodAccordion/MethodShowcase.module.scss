@@ -1,0 +1,109 @@
+@use "design" as *;
+
+.showcase {
+  display: grid;
+  gap: 1rem;
+  padding: 0 0 0 clamp(0rem, 6vw, 5rem);
+  margin-bottom: -1px;
+
+  @include up("md") {
+    grid-template-columns: repeat(3, minmax(0, 15rem));
+    align-items: end;
+  }
+}
+
+.card {
+  min-height: 15rem;
+  padding: 1.25rem;
+  background: color("white");
+  border-radius: 1.25rem 1.25rem 0 0;
+
+  &:nth-child(2) {
+    min-height: 13.5rem;
+  }
+}
+
+.kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.65rem;
+  color: color("slate");
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.note {
+  margin: 0.25rem 0 1rem;
+  font-size: 0.75rem;
+  color: color("slate");
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.6fr;
+  grid-template-rows: 2.75rem 2.75rem;
+}
+
+.swatch {
+  display: grid;
+  place-items: center;
+  font-size: 0.6rem;
+  color: color("white");
+  background: var(--accent);
+
+  &:first-child {
+    grid-row: span 2;
+  }
+
+  &:last-child {
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    writing-mode: vertical-rl;
+  }
+}
+
+.type {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.glyph {
+  font-family: $font-display;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.fonts {
+  display: grid;
+  gap: 0.1rem;
+
+  small {
+    font-size: 0.6rem;
+    color: color("slate");
+  }
+
+  strong {
+    font-size: 1.05rem;
+  }
+}
+
+.primary {
+  font-family: $font-display;
+  font-weight: 400;
+}
+
+.post {
+  position: relative;
+  height: 7rem;
+  overflow: hidden;
+  background: color("sky");
+  border-radius: 0.6rem 0.6rem 0 0;
+}
+
+.postImage {
+  object-fit: cover;
+  object-position: 50% 30%;
+}

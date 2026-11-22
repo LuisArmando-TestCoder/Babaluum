@@ -1,0 +1,19 @@
+@use "design" as *;
+
+.body {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.heading {
+  @include display("h4");
+
+  margin: 2.5rem 0 1rem;
+}
+
+.paragraph {
+  @include body("body");
+
+  margin: 0 0 1rem;
+  color: color("slate");
+}

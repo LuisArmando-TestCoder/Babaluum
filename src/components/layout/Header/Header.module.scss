@@ -1,0 +1,131 @@
+@use "sass:map";
+@use "design" as *;
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: map.get($z, "header");
+  padding-top: 1.75rem;
+  color: color("white");
+  transition: padding-top $duration-base $ease-out;
+
+  &[data-mode="floating"] {
+    padding-top: 0.75rem;
+  }
+}
+
+.bar {
+  @include container;
+
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  border-radius: map.get($radius, "pill");
+  transition:
+    background-color $duration-base $ease-out,
+    box-shadow $duration-base $ease-out;
+
+  .header[data-mode="floating"] & {
+    background: color("navy");
+    box-shadow: 0 18px 40px color("shadow");
+  }
+}
+
+.nav {
+  display: none;
+  flex: 1;
+  gap: clamp(1rem, 2.4vw, 2.25rem);
+  margin-left: 2rem;
+
+  @include up("lg") {
+    display: flex;
+  }
+}
+
+.link {
+  position: relative;
+  font-size: 0.85rem;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &::after {
+    position: absolute;
+    inset: auto 0 -0.35rem;
+    height: 2px;
+    content: "";
+    background: color("lime");
+    border-radius: 2px;
+    transition: scale $duration-base $ease-out;
+    scale: 0 1;
+    transform-origin: right;
+  }
+
+  @include hover {
+    &:hover::after {
+      scale: 1 1;
+      transform-origin: left;
+    }
+  }
+}
+
+.actions {
+  display: none;
+  margin-left: auto;
+
+  @include up("md") {
+    display: flex;
+  }
+}
+
+.signIn {
+  position: relative;
+  margin-right: -1.4rem;
+  padding-right: 2.6rem;
+}
+
+.menuToggle {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  font-size: 1.4rem;
+  color: color("navy");
+  cursor: pointer;
+  background: color("white");
+  border: 0;
+  border-radius: 50%;
+
+  @include up("lg") {
+    display: none;
+  }
+
+  @include up("md") {
+    margin-left: 0.5rem;
+  }
+}
+
+.drawer {
+  @include container;
+
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem 1.5rem;
+  margin-top: 0.5rem;
+  background: color("navy");
+  border-radius: map.get($radius, "l");
+
+  @include up("lg") {
+    display: none;
+  }
+}
+
+.drawerLink {
+  @include display("h3");
+
+  padding: 0.4rem 0;
+  color: inherit;
+  text-decoration: none;
+}

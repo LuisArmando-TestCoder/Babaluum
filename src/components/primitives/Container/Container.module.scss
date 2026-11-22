@@ -1,0 +1,5 @@
+@use "design" as *;
+
+.container {
+  @include container;
+}

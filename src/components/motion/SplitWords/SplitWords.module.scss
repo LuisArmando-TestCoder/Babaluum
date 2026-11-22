@@ -1,0 +1,22 @@
+.words {
+  display: inline;
+}
+
+.mask {
+  display: inline-block;
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+  margin-inline-end: 0.22em;
+  overflow: hidden;
+  vertical-align: top;
+
+  &:last-child {
+    margin-inline-end: 0;
+  }
+}
+
+.word {
+  display: inline-block;
+  color: var(--accent, inherit);
+  transform-origin: 0 100%;
+}

@@ -1,0 +1,11 @@
+@use "design" as *;
+
+.media {
+  margin: 0;
+  isolation: isolate;
+}
+
+.image {
+  object-fit: cover;
+  transition: scale $duration-slow $ease-out;
+}

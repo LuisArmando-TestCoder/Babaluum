@@ -1,0 +1,33 @@
+@use "design" as *;
+
+.grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+
+  @include up("md") {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+  }
+}
+
+.paragraph {
+  @include body("body");
+
+  margin: 1.4rem 0 0;
+}
+
+.cta {
+  margin-top: 2.5rem;
+}
+
+.visual {
+  position: relative;
+}
+
+.stat {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: min(60%, 15rem);
+}

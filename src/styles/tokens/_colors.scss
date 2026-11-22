@@ -1,0 +1,46 @@
+@use "sass:map";
+
+$palette: (
+  "navy": #051a2f,
+  "purple": #9d89fc,
+  "orange": #ff8f27,
+  "amber": #ff9500,
+  "red": #ff4f3f,
+  "lime": #e9fa49,
+  "green": #1cb785,
+  "cyan": #1cedf4,
+  "sky": #c8dcf2,
+  "mist": #e6eef8,
+  "slate": #63707d,
+  "fog": #828c97,
+  "line": #d9dee4,
+  "white": #fff,
+  "magenta": #e23bd5,
+  "plum": #681e68,
+  "shadow": rgb(5 26 47 / 18%),
+);
+$tones: (
+  "orange": ("bg": "orange", "fg": "white", "muted": "white", "action-bg": "white", "action-fg": "orange"),
+  "purple": ("bg": "purple", "fg": "white", "muted": "white", "action-bg": "white", "action-fg": "purple"),
+  "red": ("bg": "red", "fg": "white", "muted": "white", "action-bg": "white", "action-fg": "red"),
+  "lime": ("bg": "lime", "fg": "navy", "muted": "navy", "action-bg": "navy", "action-fg": "lime"),
+  "green": ("bg": "green", "fg": "white", "muted": "white", "action-bg": "white", "action-fg": "green"),
+  "navy": ("bg": "navy", "fg": "white", "muted": "sky", "action-bg": "white", "action-fg": "navy"),
+  "sky": ("bg": "sky", "fg": "navy", "muted": "slate", "action-bg": "navy", "action-fg": "white"),
+  "mist": ("bg": "mist", "fg": "navy", "muted": "slate", "action-bg": "navy", "action-fg": "white"),
+  "white": ("bg": "white", "fg": "navy", "muted": "slate", "action-bg": "navy", "action-fg": "white"),
+);
+
+@function color($name) {
+  @if not map.has-key($palette, $name) {
+    @error "Unknown color token `#{$name}`.";
+  }
+
+  @return var(--color-#{$name});
+}
+
+@mixin color-properties {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}

@@ -1,0 +1,14 @@
+$font-display: var(--font-display), "Anton", impact, sans-serif;
+$font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
+$type-scale: (
+  "mega": clamp(3.25rem, 9.4vw, 8.5rem),
+  "hero": clamp(2.75rem, 7vw, 6rem),
+  "h1": clamp(2.5rem, 5.2vw, 4.5rem),
+  "h2": clamp(2rem, 4vw, 3.5rem),
+  "h3": clamp(1.5rem, 2.4vw, 2.25rem),
+  "h4": clamp(1.25rem, 1.6vw, 1.5rem),
+  "lead": clamp(1.05rem, 1.2vw, 1.2rem),
+  "body": 1rem,
+  "small": 0.875rem,
+  "micro": 0.75rem,
+);

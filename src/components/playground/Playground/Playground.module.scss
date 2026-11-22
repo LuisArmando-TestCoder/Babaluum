@@ -1,0 +1,18 @@
+@use "sass:map";
+@use "design" as *;
+
+.playground {
+  --cast-scale: 1;
+
+  position: relative;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+.layer {
+  @include cover;
+
+  z-index: map.get($z, "playground");
+  pointer-events: none;
+  transition: opacity $duration-slow $ease-out;
+}

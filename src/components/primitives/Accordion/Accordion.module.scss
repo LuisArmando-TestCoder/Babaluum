@@ -1,0 +1,57 @@
+@use "design" as *;
+
+.list {
+  display: grid;
+  gap: 1.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.trigger {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.title {
+  @include display("h4");
+
+  flex: 1;
+}
+
+.toggle {
+  display: grid;
+  flex: none;
+  place-items: center;
+  order: -1;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1rem;
+  color: color("white");
+  background: color("navy");
+  border-radius: 50%;
+  transition: rotate $duration-base $ease-spring;
+
+  .item[data-open="true"] & {
+    rotate: 180deg;
+  }
+}
+
+.panel {
+  overflow: hidden;
+}
+
+.body {
+  @include body("body");
+
+  padding: 1rem 0 0 2.75rem;
+  color: color("slate");
+}

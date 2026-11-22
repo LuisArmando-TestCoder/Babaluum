@@ -1,0 +1,1 @@
+export { ImpactBanner } from "./ImpactBanner";

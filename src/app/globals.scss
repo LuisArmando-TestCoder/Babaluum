@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "design" as *;
+
+:root {
+  @include color-properties;
+
+  color-scheme: light;
+}
+
+@include tone-properties;
+
+@each $name in ("orange", "purple", "red", "lime", "green", "amber", "sky", "white", "navy", "fog") {
+  [data-accent="#{$name}"] {
+    --accent: #{color($name)};
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  margin: 0;
+  font-family: $font-body;
+  color: color("navy");
+  background: color("white");
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: color("navy");
+  background: color("lime");
+}
+
+:focus-visible {
+  outline: 2px solid color("purple");
+  outline-offset: 3px;
+}
+
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+}

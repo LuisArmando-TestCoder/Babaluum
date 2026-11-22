@@ -1,0 +1,53 @@
+@use "design" as *;
+
+.footer {
+  display: grid;
+  gap: 3rem;
+  align-items: end;
+  width: 100%;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  text-align: start;
+
+  @include up("md") {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tags {
+  display: grid;
+  justify-items: start;
+  width: max-content;
+  margin: 0 0 0.5rem 4.5rem;
+}
+
+.tag {
+  margin-top: -0.55rem;
+
+  &:nth-child(2) {
+    margin-left: -1.4rem;
+  }
+}
+
+.statement {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: color("fog");
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.note {
+  @include body("micro");
+
+  margin: 1rem 0 0;
+  color: color("sky");
+}

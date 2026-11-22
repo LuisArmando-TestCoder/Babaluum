@@ -1,0 +1,47 @@
+@use "design" as *;
+
+.card {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  margin: 0;
+}
+
+.headline {
+  @include display("h4");
+
+  margin: 0;
+}
+
+.quote {
+  @include body("small");
+
+  margin: 0;
+  color: color("slate");
+}
+
+.author {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 0.75rem;
+
+  span {
+    display: grid;
+    flex: 1;
+    font-size: 0.9rem;
+  }
+
+  small {
+    color: color("slate");
+  }
+}
+
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.mark {
+  font-size: 2.4rem;
+}

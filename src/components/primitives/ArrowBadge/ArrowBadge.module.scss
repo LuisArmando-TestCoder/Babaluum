@@ -1,0 +1,22 @@
+@use "design" as *;
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  color: var(--tone-action-fg, #{color("white")});
+  background: var(--tone-action-bg, #{color("navy")});
+  border-radius: 50%;
+  transition: transform $duration-base $ease-spring;
+}
+
+.s {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.05rem;
+}
+
+.m {
+  width: 3.75rem;
+  height: 3.75rem;
+  font-size: 1.5rem;
+}

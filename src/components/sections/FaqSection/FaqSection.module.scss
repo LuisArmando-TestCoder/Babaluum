@@ -1,0 +1,22 @@
+@use "design" as *;
+
+.grid {
+  display: grid;
+  gap: 3rem;
+
+  @include up("md") {
+    grid-template-columns: 0.8fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.title {
+  max-width: 8ch;
+}
+
+.note {
+  @include body("body");
+
+  max-width: 22rem;
+  margin: 2rem 0 0;
+}
