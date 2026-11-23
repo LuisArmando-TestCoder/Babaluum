@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { ImageDrift } from "@/components/motion/ImageDrift";
+import { cx } from "@/domain/design/cx";
 import type { ImageAsset } from "@/domain/design/media";
 import type { Tone } from "@/domain/design/tone";
-import { cx } from "@/domain/design/cx";
 import type { Notch } from "../NotchedSurface";
 import { NotchedSurface } from "../NotchedSurface";
 import styles from "./Media.module.scss";
@@ -18,8 +19,10 @@ type MediaProps = {
   className?: string;
 };
 
-export const Media = ({ image, ratio = "4 / 3", notches, tone, sizes = "(min-width: 900px) 50vw, 100vw", priority, className }: MediaProps) => (
+export const Media = ({ image, ratio = "4 / 3", notches, tone = "sky", sizes = "(min-width: 900px) 50vw, 100vw", priority, className }: MediaProps) => (
   <NotchedSurface as="figure" tone={tone} notches={notches} className={cx(styles.media, className)} style={{ aspectRatio: ratio }}>
-    <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className={styles.image} />
+    <ImageDrift>
+      <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className={styles.image} />
+    </ImageDrift>
   </NotchedSurface>
 );

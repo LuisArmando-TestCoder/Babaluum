@@ -1,0 +1,20 @@
+@use "design" as *;
+
+.frame,
+.drift,
+.shutter {
+  @include cover;
+}
+
+.frame {
+  overflow: hidden;
+}
+
+.drift {
+  will-change: transform;
+}
+
+.shutter {
+  background: var(--shutter, #{color("sky")});
+  transform-origin: 50% 0;
+}

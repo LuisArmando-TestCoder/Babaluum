@@ -1,0 +1,78 @@
+@use "design" as *;
+
+.anchor {
+  scroll-margin-top: 7rem;
+}
+
+.card {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  min-height: clamp(18rem, 26.4vw, 23.75rem);
+  padding: clamp(2rem, 4.2vw, 3.75rem);
+
+  @include up("md") {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) auto;
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+  }
+}
+
+.intro {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  bottom: calc(100% - 0.35rem);
+  left: 1.5rem;
+}
+
+.title {
+  @include display("h2");
+
+  margin: 0 0 clamp(0.75rem, 1.4vw, 1.25rem);
+}
+
+.summary {
+  max-width: 25rem;
+  margin: 0;
+  opacity: 0.88;
+}
+
+.listTitle {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.05rem, 1.39vw, 1.25rem);
+  font-weight: 700;
+}
+
+.items {
+  display: grid;
+  gap: clamp(0.4rem, 1.1vw, 1rem);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+}
+
+.bullet {
+  font-size: 0.95rem;
+  stroke-width: 5;
+}
+
+.action {
+  display: grid;
+  gap: clamp(1rem, 1.8vw, 1.6rem);
+  justify-items: start;
+}
+
+.headline {
+  @include display("h3");
+
+  margin: 0;
+  white-space: nowrap;
+}

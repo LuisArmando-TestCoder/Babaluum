@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "design" as *;
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.75rem, 3.3vw, 3rem);
+}
+
+.chip {
+  padding: 0.7rem 1.25rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  color: color("navy");
+  cursor: pointer;
+  background: color("mist");
+  border: 0;
+  border-radius: map.get($radius, "pill");
+  transition:
+    background-color $duration-base $ease-out,
+    color $duration-base $ease-out,
+    scale $duration-fast $ease-spring;
+
+  &:active {
+    scale: 0.94;
+  }
+
+  &[aria-pressed="true"] {
+    color: color("white");
+    background: color("navy");
+  }
+
+  @include hover {
+    &[aria-pressed="false"]:hover {
+      background: color("lime");
+    }
+  }
+}

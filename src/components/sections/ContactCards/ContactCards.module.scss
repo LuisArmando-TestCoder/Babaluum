@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  gap: 1.1rem;
+  gap: clamp(0.9rem, 1.74vw, 1.5625rem);
   padding: 0;
   margin: 0;
   list-style: none;
@@ -13,25 +13,32 @@
 }
 
 .card {
-  display: grid;
-  justify-items: center;
-  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(17rem, 30vw, 27rem);
+  padding: 2.5rem 1.5rem;
   text-align: center;
 }
 
 .icon {
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   font-size: 2.25rem;
 }
 
 .title {
-  @include display("h4");
+  @include display("h3");
 
-  margin: 0 0 0.75rem;
+  margin: 0 0 clamp(0.9rem, 2vw, 1.75rem);
 }
 
 .line {
-  @include body("small");
-
   margin: 0;
+
+  a {
+    color: inherit;
+    text-decoration-color: color("purple");
+    text-underline-offset: 0.25em;
+  }
 }

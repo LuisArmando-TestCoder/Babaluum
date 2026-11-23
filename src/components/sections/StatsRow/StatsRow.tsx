@@ -13,7 +13,7 @@ export const StatsRow = ({ stats }: StatsRowProps) => (
   <Section spacing="s">
     <RevealGroup as="ul" className={styles.row}>
       {stats.map((stat, index) => (
-        <RevealItem as="li" key={stat.value}>
+        <RevealItem as="li" key={stat.value} index={index}>
           <StatCard value={stat.value} label={stat.label} body={stat.body} tone={stat.tone} shape={SHAPES[index % SHAPES.length]} className={styles.card} />
         </RevealItem>
       ))}

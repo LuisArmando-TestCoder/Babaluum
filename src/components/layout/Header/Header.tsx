@@ -1,12 +1,16 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import Link from "next/link";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/primitives/Button";
 import { Icon } from "@/components/primitives/Icon";
 import { Logo } from "@/components/primitives/Logo";
 import { HEADER_ACTIONS, PRIMARY_NAV } from "@/content/site";
+import { useScrollLock } from "@/hooks/useScrollLock";
+import { MenuOverlay } from "./MenuOverlay";
+import { NavLink } from "./NavLink";
+import { SoundToggle } from "../SoundToggle";
 import styles from "./Header.module.scss";
 
 type HeaderMode = "top" | "floating" | "hidden";
@@ -19,49 +23,50 @@ const nextMode = (current: number, previous: number): HeaderMode => {
 };
 
 export const Header = () => {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [mode, setMode] = useState<HeaderMode>("top");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpenOn, setMenuOpenOn] = useState<string | null>(null);
+  const menuOpen = menuOpenOn === pathname;
+  const hidden = mode === "hidden" && !menuOpen;
 
   useMotionValueEvent(scrollY, "change", (current) => setMode(nextMode(current, scrollY.getPrevious() ?? 0)));
+  useScrollLock(menuOpen);
 
   return (
     <motion.header
       className={styles.header}
-      data-mode={menuOpen ? "floating" : mode}
-      animate={{ y: mode === "hidden" && !menuOpen ? "-120%" : "0%" }}
-      transition={{ type: "spring", stiffness: 260, damping: 30 }}
+      data-mode={menuOpen ? "menu" : mode}
+      animate={{ y: hidden ? "-130%" : "0%" }}
+      transition={{ type: "spring", stiffness: 240, damping: 30 }}
     >
+      <MenuOverlay open={menuOpen} pathname={pathname} onNavigate={() => setMenuOpenOn(null)} />
       <div className={styles.bar}>
-        <Logo />
+        <Logo className={styles.logo} />
         <nav aria-label="Principal" className={styles.nav}>
           {PRIMARY_NAV.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.link}>
-              {link.label}
-            </Link>
+            <NavLink key={link.href} link={link} pathname={pathname} />
           ))}
         </nav>
         <div className={styles.actions}>
           <Button href={HEADER_ACTIONS.signIn.href} variant="accent" withArrow={false} className={styles.signIn}>
             {HEADER_ACTIONS.signIn.label}
           </Button>
-          <Button href={HEADER_ACTIONS.join.href}>{HEADER_ACTIONS.join.label}</Button>
+          <Button href={HEADER_ACTIONS.join.href} className={styles.join}>
+            {HEADER_ACTIONS.join.label}
+          </Button>
         </div>
-        <button type="button" className={styles.menuToggle} aria-expanded={menuOpen} aria-label="Menú" onClick={() => setMenuOpen((open) => !open)}>
+        <SoundToggle placement="bar" />
+        <button
+          type="button"
+          className={styles.menuToggle}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          onClick={() => setMenuOpenOn(menuOpen ? null : pathname)}
+        >
           <Icon name={menuOpen ? "close" : "menu"} />
         </button>
       </div>
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.nav aria-label="Móvil" className={styles.drawer} initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
-            {[...PRIMARY_NAV, HEADER_ACTIONS.join].map((link) => (
-              <Link key={link.href} href={link.href} className={styles.drawerLink} onClick={() => setMenuOpen(false)}>
-                {link.label}
-              </Link>
-            ))}
-          </motion.nav>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 };

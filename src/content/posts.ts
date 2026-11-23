@@ -57,3 +57,5 @@ export const findPost = (slug: string): Post | undefined => POSTS.find((item) =>
 
 export const formatPostDate = (iso: string): string =>
   new Intl.DateTimeFormat("es-CR", { day: "numeric", month: "short", year: "numeric" }).format(new Date(`${iso}T12:00:00`));
+
+export const POST_SLIDES = POSTS.map((item) => ({ href: `/blog/${item.slug}`, title: item.title, summary: item.excerpt, cover: item.cover }));

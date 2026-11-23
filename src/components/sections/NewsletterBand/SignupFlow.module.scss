@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "design" as *;
+
+.flow {
+  display: grid;
+  gap: 1rem;
+}
+
+.progress {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tick {
+  width: 1.5rem;
+  height: 0.25rem;
+  background: currentcolor;
+  border-radius: map.get($radius, "pill");
+  opacity: 0.2;
+  transition:
+    width $duration-slow $ease-out,
+    opacity $duration-slow $ease-out;
+
+  &[data-reached="true"] {
+    opacity: 1;
+  }
+
+  &[data-current="true"] {
+    width: 3rem;
+  }
+}
+
+.stage {
+  display: grid;
+  align-content: center;
+  min-height: clamp(8.5rem, 11vw, 9.75rem);
+}
+
+.problem {
+  margin: 0;
+  overflow: hidden;
+  font-weight: 600;
+}

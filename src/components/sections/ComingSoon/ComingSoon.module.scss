@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "design" as *;
+
+.section {
+  color: color("white");
+  background: color("navy");
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: clamp(13rem, 24vw, 17rem) 1.5rem clamp(11rem, 16vw, 13rem);
+}
+
+.content {
+  position: relative;
+  z-index: map.get($z, "content");
+  display: grid;
+  justify-items: center;
+  max-width: 46rem;
+  text-align: center;
+}
+
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.eyebrow {
+  @include display("eyebrow");
+
+  color: color("purple");
+}
+
+.title {
+  @include display("h1");
+
+  margin: 0 0 clamp(1rem, 2vw, 1.75rem);
+}
+
+.text,
+.closing {
+  max-width: 36rem;
+  margin: 0;
+  color: color("sky");
+}
+
+.closing {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: color("lime");
+}
+
+.actions {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: center;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.back {
+  color: color("white");
+  text-underline-offset: 0.3em;
+}

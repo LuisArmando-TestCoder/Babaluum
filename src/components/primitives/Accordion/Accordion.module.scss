@@ -2,7 +2,7 @@
 
 .list {
   display: grid;
-  gap: 1.75rem;
+  gap: clamp(1.5rem, 3.2vw, 2.9rem);
   padding: 0;
   margin: 0;
   list-style: none;
@@ -19,6 +19,13 @@
   cursor: pointer;
   background: none;
   border: 0;
+
+  @include hover {
+    &:hover .toggle {
+      background: color("purple");
+      rotate: 90deg;
+    }
+  }
 }
 
 .title {
@@ -31,18 +38,15 @@
   display: grid;
   flex: none;
   place-items: center;
-  order: -1;
-  width: 1.75rem;
-  height: 1.75rem;
-  font-size: 1rem;
+  width: clamp(1.75rem, 2.5vw, 2.25rem);
+  height: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-size: 1.15rem;
   color: color("white");
   background: color("navy");
   border-radius: 50%;
-  transition: rotate $duration-base $ease-spring;
-
-  .item[data-open="true"] & {
-    rotate: 180deg;
-  }
+  transition:
+    rotate $duration-slow $ease-spring,
+    background-color $duration-base $ease-out;
 }
 
 .panel {
@@ -50,8 +54,7 @@
 }
 
 .body {
-  @include body("body");
-
-  padding: 1rem 0 0 2.75rem;
+  max-width: 36rem;
+  padding-top: clamp(0.75rem, 1.5vw, 1.25rem);
   color: color("slate");
 }

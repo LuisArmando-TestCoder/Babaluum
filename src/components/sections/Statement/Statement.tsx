@@ -1,16 +1,17 @@
-import { Reveal } from "@/components/motion/Reveal";
-import { Heading, Highlight } from "@/components/primitives/Heading";
+import { ScrubWords } from "@/components/motion/ScrubWords";
+import { Heading } from "@/components/primitives/Heading";
 import { Section } from "@/components/primitives/Section";
+import { twoTone } from "@/domain/design/words";
 import styles from "./Statement.module.scss";
 
 type StatementProps = { lead: string; highlight: string; align?: "center" | "start" };
 
 export const Statement = ({ lead, highlight, align = "center" }: StatementProps) => (
   <Section spacing="m">
-    <Reveal className={styles[align]}>
+    <div className={styles[align]}>
       <Heading size="h2" align={align} className={styles.heading}>
-        {lead} <Highlight>{highlight}</Highlight>
+        <ScrubWords segments={twoTone(lead, highlight)} />
       </Heading>
-    </Reveal>
+    </div>
   </Section>
 );

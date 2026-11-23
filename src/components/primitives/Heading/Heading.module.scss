@@ -1,18 +1,13 @@
-@use "sass:map";
 @use "design" as *;
 
 .heading {
   margin: 0;
-  font-family: $font-display;
-  font-weight: 400;
-  line-height: 0.98;
-  text-transform: uppercase;
   text-wrap: balance;
 }
 
-@each $size in ("mega", "hero", "h1", "h2", "h3", "h4") {
+@each $size in ("mega", "hero", "banner", "h1", "h2", "h3", "h4") {
   .#{$size} {
-    font-size: map.get($type-scale, $size);
+    @include display($size);
   }
 }
 
@@ -22,8 +17,4 @@
 
 .center {
   text-align: center;
-}
-
-.highlight {
-  color: var(--accent);
 }

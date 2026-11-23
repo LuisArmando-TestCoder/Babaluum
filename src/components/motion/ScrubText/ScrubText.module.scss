@@ -1,0 +1,11 @@
+@use "design" as *;
+
+.scrub {
+  background: linear-gradient(currentcolor, currentcolor) 0 0 / 100% 100% no-repeat;
+  background-clip: text;
+  -webkit-text-fill-color: color-mix(in srgb, currentcolor 26%, transparent);
+
+  @include reduced-motion {
+    -webkit-text-fill-color: currentcolor;
+  }
+}

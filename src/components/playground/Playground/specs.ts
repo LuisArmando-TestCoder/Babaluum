@@ -2,20 +2,25 @@ import type { MotionValue } from "framer-motion";
 import type { ReactNode, RefObject } from "react";
 import type { PoseValues } from "@/hooks/poseValues";
 
-export type Placement = { x: number; y: number };
+import type { Placement } from "@/domain/rig/placement";
+
+export type { Placement };
+
+export type AnchorSpec = { element: RefObject<HTMLElement | null>; fit?: number };
 
 type BodySpecBase = {
   id: string;
   radius: number;
   mass: number;
   home: Placement;
+  compactHome?: Placement;
   size: number;
   seed: number;
+  anchor?: AnchorSpec;
 };
 
 export type NpcSpec = BodySpecBase & {
   temperament: "anchored" | "roamer";
-  anchor?: RefObject<HTMLElement | null>;
   render: (pose: PoseValues) => ReactNode;
 };
 

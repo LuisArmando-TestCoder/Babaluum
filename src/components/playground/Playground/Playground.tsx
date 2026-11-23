@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimationFrame, useInView, useReducedMotion } from "framer-motion";
+import { motion, useAnimationFrame, useInView, useReducedMotion, useScroll, useVelocity } from "framer-motion";
 import type { PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 import type { Vec2 } from "@/domain/physics/vector";
@@ -28,10 +28,18 @@ export const Playground = ({ npcs = [], trinkets = [], className, children }: Pl
   const [simulation] = useState(() => createSimulation(npcs, trinkets));
   const inView = useInView(root, { margin: "20% 0px" });
   const reduced = useReducedMotion();
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
 
   useAnimationFrame((_, delta) => {
     if (!root.current || (!inView && simulation.settled)) return;
-    tickSimulation(simulation, { root: root.current, pointer: pointer.current, delta, running: !reduced });
+    tickSimulation(simulation, {
+      root: root.current,
+      pointer: pointer.current,
+      wind: vec(0, scrollVelocity.get()),
+      delta,
+      running: !reduced,
+    });
   });
 
   const track = (event: PointerEvent) => {

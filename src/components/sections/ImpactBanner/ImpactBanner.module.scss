@@ -2,45 +2,37 @@
 @use "design" as *;
 
 .banner {
-  --surface-radius: 2rem;
-
   color: color("white");
 }
 
 .stage {
-  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 2.5rem) 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(24rem, 44.4vw, 40rem);
+  padding: clamp(4rem, 7.6vw, 6.9rem) clamp(1.25rem, 4.2vw, 3.75rem) clamp(1.75rem, 3.6vw, 3.25rem);
 }
 
 .title {
+  @include display("banner");
+
   position: relative;
   z-index: map.get($z, "content");
-  max-width: 13em;
+  max-width: 9.2em;
   margin: 0 auto;
-  font-family: $font-display;
-  font-size: map.get($type-scale, "hero");
-  font-weight: 400;
-  line-height: 0.98;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .foot {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
   align-items: end;
   justify-content: space-between;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: 2rem;
+  margin-top: auto;
 }
 
 .note {
-  @include body("small");
-
-  max-width: 17rem;
+  max-width: 16.5rem;
   margin: 0;
-}
-
-.logo {
-  --logo-contrast: #{color("purple")};
-
-  font-size: 1.1rem;
 }

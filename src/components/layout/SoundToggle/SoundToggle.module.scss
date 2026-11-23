@@ -1,0 +1,66 @@
+@use "sass:map";
+@use "design" as *;
+
+@keyframes boop {
+  40% {
+    rotate: -14deg;
+    scale: 1.12;
+  }
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  margin-left: auto;
+  font-size: 1.3rem;
+  color: color("white");
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px color("slate");
+  transition:
+    box-shadow $duration-base $ease-out,
+    color $duration-base $ease-out;
+
+  &[aria-pressed="false"] {
+    color: color("fog");
+  }
+
+  &:active {
+    scale: 0.92;
+  }
+
+  @include hover {
+    &:hover {
+      box-shadow: inset 0 0 0 1.5px color("lime");
+      animation: boop 450ms $ease-spring;
+    }
+  }
+
+}
+
+.bar {
+  @include up("sm") {
+    margin-left: 0.75rem;
+  }
+
+  @include up("nav") {
+    display: none;
+  }
+}
+
+.dock {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: map.get($z, "header");
+  display: none;
+  background: color("navy");
+
+  @include up("nav") {
+    display: grid;
+  }
+}

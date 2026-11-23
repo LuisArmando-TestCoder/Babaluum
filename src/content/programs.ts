@@ -1,14 +1,92 @@
 import type { Tone } from "@/domain/design/tone";
 
-export type Program = { slug: string; title: string; summary: string; tone: Tone };
+export type Program = {
+  slug: string;
+  href: string;
+  title: string;
+  summary: string;
+  tone: Tone;
+  format: string;
+  duration: string;
+  outcomes: readonly string[];
+};
 
 export const PROGRAMS: readonly Program[] = [
-  { slug: "ia-aplicada", title: "Inteligencia artificial aplicada", summary: "Aprende a crear con IA de forma ética y útil: prompts, automatizaciones y proyectos reales para tu comunidad.", tone: "orange" },
-  { slug: "creacion-de-contenido", title: "Creación de contenido", summary: "Del guion a la publicación: narrativa, video corto y diseño para que tus ideas lleguen lejos.", tone: "purple" },
-  { slug: "conciencia-ambiental", title: "Conciencia ambiental", summary: "Proyectos de impacto con organizaciones locales para cuidar el planeta y medir lo que cambia.", tone: "red" },
-  { slug: "desarrollo-profesional", title: "Desarrollo profesional", summary: "Mentorías, portafolio y habilidades blandas para dar el siguiente paso en tu carrera.", tone: "lime" },
-  { slug: "voluntariados", title: "Voluntariados", summary: "Pon tu talento al servicio de causas que importan y suma experiencia con propósito.", tone: "green" },
-  { slug: "podcast", title: "Podcast ¿Cómo lo hacen?", summary: "Conversaciones con quienes ya lo lograron: procesos, errores y aprendizajes sin filtro.", tone: "navy" },
+  {
+    slug: "inteligencia-artificial",
+    href: "/programas#inteligencia-artificial",
+    title: "Inteligencia artificial",
+    summary: "Aprende a crear con IA de forma ética y útil, con proyectos reales para tu comunidad.",
+    tone: "orange",
+    format: "En línea, en vivo",
+    duration: "8 semanas",
+    outcomes: ["Prompts y flujos de trabajo con IA", "Automatizaciones para tu día a día", "Un proyecto aplicado a una causa real"],
+  },
+  {
+    slug: "conciencia-ambiental",
+    href: "/programas#conciencia-ambiental",
+    title: "Conciencia ambiental",
+    summary: "Proyectos con organizaciones locales para cuidar el planeta y medir lo que cambia.",
+    tone: "purple",
+    format: "Presencial y en campo",
+    duration: "10 semanas",
+    outcomes: ["Diagnóstico ambiental de tu comunidad", "Campaña con una organización aliada", "Indicadores de impacto medidos"],
+  },
+  {
+    slug: "desarrollo-profesional",
+    href: "/programas#desarrollo-profesional",
+    title: "Desarrollo profesional",
+    summary: "Mentorías, portafolio y habilidades blandas para dar el siguiente paso en tu carrera.",
+    tone: "red",
+    format: "En línea, con mentoría",
+    duration: "6 semanas",
+    outcomes: ["Portafolio revisado por mentores", "Entrevistas y presentaciones en práctica", "Un plan de carrera a 12 meses"],
+  },
+  {
+    slug: "programa-de-escritores",
+    href: "/programas/programa-de-escritores",
+    title: "Programa de escritores",
+    summary: "Escribe y publica artículos sobre tecnología, sostenibilidad y carrera con acompañamiento editorial.",
+    tone: "lime",
+    format: "En línea, con edición",
+    duration: "Abre en 2027",
+    outcomes: ["Un artículo publicado en el blog de Babaluum", "Retroalimentación editorial en cada entrega", "Tu firma en un portafolio de escritura"],
+  },
+  {
+    slug: "podcast",
+    href: "/programas#podcast",
+    title: "¿Cómo lo hacen? Podcast",
+    summary: "Conversaciones con quienes ya lo lograron: procesos, errores y aprendizajes.",
+    tone: "green",
+    format: "Audio y video",
+    duration: "Quincenal",
+    outcomes: ["Entrevistas con creadores y líderes", "Sesiones en vivo con preguntas", "Guías descargables de cada episodio"],
+  },
+  {
+    slug: "pasantias-y-voluntariados",
+    href: "/programas/pasantias-y-voluntariados",
+    title: "Pasantías y voluntariados",
+    summary: "Pon tu talento al servicio de causas que importan y suma experiencia con propósito.",
+    tone: "navy",
+    format: "Presencial",
+    duration: "Fechas abiertas",
+    outcomes: ["Jornadas con organizaciones aliadas", "Horas de voluntariado certificadas", "Una red de personas con tus intereses"],
+  },
 ];
 
-export const HERO_TAGS = ["Programas", "Podcast", "Voluntariados"] as const;
+export type Offer = { id: string; tone: Tone; title: string; summary: string; headline: string; items: readonly string[]; cta: { label: string; href: string } };
+
+const hasOwnPage = (program: Program): boolean => program.href === `/programas/${program.slug}`;
+
+const offerCta = (program: Program): Offer["cta"] =>
+  hasOwnPage(program) ? { label: "Conocer el programa", href: program.href } : { label: "Quiero inscribirme", href: `/contacto?programa=${program.slug}#mensaje` };
+
+export const PROGRAM_OFFERS: readonly Offer[] = PROGRAMS.map((program) => ({
+  id: program.slug,
+  tone: program.tone,
+  title: program.title,
+  summary: program.summary,
+  headline: program.duration,
+  items: program.outcomes,
+  cta: offerCta(program),
+}));

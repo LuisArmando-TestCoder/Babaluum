@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "design" as *;
+
+@keyframes lift {
+  to {
+    translate: 0 -130%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  45% {
+    opacity: 1;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 1.25;
+  }
+}
+
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: map.get($z, "curtain");
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: color("navy");
+  animation: lift 1s $ease-in-out 0.25s forwards;
+
+  @include reduced-motion {
+    display: none;
+  }
+}
+
+.mark {
+  width: clamp(3.5rem, 6vw, 5.5rem);
+  aspect-ratio: 1;
+  background: color("lime");
+  mask: url("/brand/babaluum-mark.svg") center / contain no-repeat;
+  animation: pulse 0.9s $ease-out forwards;
+}
+
+.tail {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  width: clamp(7rem, 12vw, 11.25rem);
+  translate: -50% 0;
+  fill: color("navy");
+}

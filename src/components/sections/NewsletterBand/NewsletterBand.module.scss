@@ -1,0 +1,23 @@
+@use "design" as *;
+
+.band {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 4.2vw, 3.75rem) clamp(3.75rem, 6vw, 5.5rem);
+
+  @include up("md") {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.title {
+  @include display("h2");
+
+  margin: 0 0 0.75rem;
+}
+
+.aside {
+  max-width: 30rem;
+  margin: 0;
+}

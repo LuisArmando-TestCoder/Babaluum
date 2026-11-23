@@ -2,7 +2,7 @@
 
 .pair {
   display: grid;
-  gap: 1.75rem;
+  gap: clamp(1.25rem, 2.8vw, 2.5rem);
 
   @include up("sm") {
     grid-template-columns: 1fr 1fr;

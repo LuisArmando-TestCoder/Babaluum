@@ -11,18 +11,22 @@ type NotchedSurfaceProps = {
   as?: SurfaceElement;
   tone?: Tone;
   notches?: readonly Notch[];
+  notchScale?: number;
   className?: string;
   style?: CSSProperties;
   children?: ReactNode;
 };
 
-export const NotchedSurface = ({ as = "div", tone, notches = [], className, style, children }: NotchedSurfaceProps) => {
+const scaleStyle = (notchScale?: number): CSSProperties =>
+  notchScale === undefined ? {} : ({ "--notch-scale": notchScale } as CSSProperties);
+
+export const NotchedSurface = ({ as = "div", tone, notches = [], notchScale, className, style, children }: NotchedSurfaceProps) => {
   const Element: ElementType = as;
   return (
     <Element
       data-tone={tone}
       className={cx(styles.surface, className)}
-      style={{ ...notchMask(notches), ...style }}
+      style={{ ...notchMask(notches), ...scaleStyle(notchScale), ...style }}
     >
       {children}
     </Element>

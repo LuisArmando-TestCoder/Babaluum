@@ -9,6 +9,7 @@ import { add, clampLength, scale, vec } from "./vector";
 export type StepContext = {
   readonly time: number;
   readonly pointer: Vec2 | null;
+  readonly wind: Vec2;
   readonly bodies: readonly Body[];
   readonly bounds: Bounds;
 };
@@ -85,10 +86,12 @@ const collideAll = (bodies: Body[], config: WorldConfig): void => {
   }
 };
 
-export const stepWorld = (world: World, elapsed: number, pointer: Vec2 | null): void => {
+export type StepInput = { pointer: Vec2 | null; wind?: Vec2 };
+
+export const stepWorld = (world: World, elapsed: number, { pointer, wind = vec() }: StepInput): void => {
   const dt = Math.min(Math.max(elapsed, 0), world.config.maxStep);
   world.time += dt;
-  const context: StepContext = { time: world.time, pointer, bodies: world.bodies, bounds: world.bounds };
+  const context: StepContext = { time: world.time, pointer, wind, bodies: world.bodies, bounds: world.bounds };
   for (const body of world.bodies) {
     integrate(body, sumForces(body, world.forcesFor(body), context), { dt, config: world.config });
   }
@@ -96,9 +99,8 @@ export const stepWorld = (world: World, elapsed: number, pointer: Vec2 | null): 
   for (const body of world.bodies) containBody(body, world.bounds, world.config.wallBounce);
 };
 
-export const resizeWorld = (world: World, bounds: Bounds, bodyScale = 1): void => {
+export const resizeWorld = (world: World, bounds: Bounds): void => {
   world.bounds = bounds;
-  for (const body of world.bodies) body.radius = body.baseRadius * bodyScale;
 };
 
 export const findBody = (world: World, id: string): Body | undefined => world.bodies.find((body) => body.id === id);

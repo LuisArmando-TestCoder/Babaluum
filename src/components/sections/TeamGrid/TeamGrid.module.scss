@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  gap: 3rem 1.1rem;
+  gap: clamp(2.5rem, 6.9vw, 6.25rem) clamp(0.9rem, 1.74vw, 1.5625rem);
   padding: 0;
   margin: 0;
   list-style: none;

@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "design" as *;
 
 .surface {
@@ -5,9 +6,9 @@
   overflow: hidden;
   color: var(--tone-fg, inherit);
   background: var(--tone-bg, transparent);
-  border-radius: var(--surface-radius, 1.75rem);
+  border-radius: var(--surface-radius, #{map.get($radius, "xl")});
 
-  @include down("sm") {
-    --notch-scale: 0.7;
+  @include down("md") {
+    --notch-scale: 0.62;
   }
 }

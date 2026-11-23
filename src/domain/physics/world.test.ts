@@ -48,7 +48,7 @@ describe("world", () => {
     body.velocity = vec(-5000, -5000);
     const world = createWorld([body], NO_FORCES);
     resizeWorld(world, { width: 200, height: 200 });
-    for (let frame = 0; frame < 120; frame += 1) stepWorld(world, 1 / 60, null);
+    for (let frame = 0; frame < 120; frame += 1) stepWorld(world, 1 / 60, { pointer: null });
     expect(body.position.x).toBeGreaterThanOrEqual(body.radius);
     expect(body.position.y).toBeGreaterThanOrEqual(body.radius);
   });
@@ -58,7 +58,7 @@ describe("world", () => {
     body.velocity = vec(300, 0);
     const world = createWorld([body], NO_FORCES, { linearDamping: 0 });
     resizeWorld(world, { width: 10_000, height: 10_000 });
-    stepWorld(world, 5, null);
+    stepWorld(world, 5, { pointer: null });
     expect(body.position.x).toBeCloseTo(110, 5);
   });
 
@@ -69,7 +69,7 @@ describe("world", () => {
       const bodies = [pusher, artifact(160, 100)];
       const world = createWorld(bodies, NO_FORCES);
       resizeWorld(world, { width: 800, height: 600 });
-      for (let frame = 0; frame < 90; frame += 1) stepWorld(world, 1 / 60, vec(400, 300));
+      for (let frame = 0; frame < 90; frame += 1) stepWorld(world, 1 / 60, { pointer: vec(400, 300) });
       return bodies.map((body) => [body.position.x, body.position.y, body.rotation]);
     };
     expect(run()).toEqual(run());

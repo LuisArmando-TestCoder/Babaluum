@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "design" as *;
+
+$edge: max(#{$gutter}, calc((100vw - #{$container}) / 2));
+
+.section {
+  padding-block: map.get($section, "l");
+  overflow: clip;
+}
+
+.head {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: clamp(2.25rem, 5.2vw, 4.75rem);
+}
+
+.header {
+  grid-template-columns: 1fr;
+  margin-bottom: 0;
+}
+
+.controls {
+  padding-bottom: 0.5rem;
+}
+
+.bleed {
+  padding-left: $edge;
+}
+
+.viewport {
+  touch-action: pan-y;
+}
+
+.track {
+  display: flex;
+  gap: clamp(1.25rem, 2.8vw, 2.5rem);
+  width: max-content;
+  padding: 0 $edge 0 0;
+  margin: 0;
+  list-style: none;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.slide {
+  width: clamp(17rem, 37.5vw, 33.75rem);
+}

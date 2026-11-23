@@ -1,8 +1,12 @@
 @use "design" as *;
 
 .eyebrow {
-  @include display("h4");
+  @include display("eyebrow");
 
-  margin: 0 0 0.75rem;
+  margin: 0 0 clamp(0.75rem, 1.25vw, 1.125rem);
   color: var(--accent);
+}
+
+.l {
+  @include display("h4");
 }

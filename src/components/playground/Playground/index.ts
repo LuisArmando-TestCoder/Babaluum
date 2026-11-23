@@ -1,2 +1,2 @@
 export { Playground } from "./Playground";
-export type { NpcSpec, Placement, TrinketSpec } from "./specs";
+export type { AnchorSpec, NpcSpec, Placement, TrinketSpec } from "./specs";

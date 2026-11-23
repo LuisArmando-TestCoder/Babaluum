@@ -1,0 +1,1 @@
+export { ScrubWords } from "./ScrubWords";

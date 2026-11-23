@@ -1,35 +1,37 @@
 @use "design" as *;
 
 .cover {
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2.5rem, 6.25vw, 5.6rem);
 }
 
-.article {
-  max-width: 52rem;
+.chapter {
+  margin-bottom: clamp(2.5rem, 5.5vw, 5rem);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .heading {
   @include display("h4");
 
-  margin: 2.5rem 0 1rem;
+  margin: 0 0 clamp(0.75rem, 1.4vw, 1.25rem);
 }
 
 .paragraph {
-  @include body("body");
-
-  margin: 0 0 1rem;
-  color: color("slate");
+  max-width: 75rem;
+  margin: 0 0 1.25rem;
 }
 
 .pull {
-  max-width: 18em;
-  margin: 4rem 0 2.5rem;
+  max-width: 17em;
+  margin: 0 0 clamp(2.5rem, 5.5vw, 5rem);
 }
 
 .pair {
   display: grid;
-  gap: 1.75rem;
-  margin-bottom: 1rem;
+  gap: clamp(1.25rem, 2.8vw, 2.5rem);
+  margin-bottom: clamp(2.5rem, 6.25vw, 5.6rem);
 
   @include up("sm") {
     grid-template-columns: 1fr 1fr;

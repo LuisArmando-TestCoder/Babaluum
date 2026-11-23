@@ -3,6 +3,10 @@ import { clamp, vec } from "./vector";
 
 export type Bounds = { width: number; height: number };
 
+const COMPACT_WIDTH = 640;
+
+export const isCompact = ({ width }: Pick<Bounds, "width">): boolean => width < COMPACT_WIDTH;
+
 type Range = { min: number; max: number };
 
 const reflect = (value: number, { min, max }: Range, speed: number): [number, number] => {

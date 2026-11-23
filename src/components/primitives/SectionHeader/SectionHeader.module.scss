@@ -2,22 +2,29 @@
 
 .header {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
   align-items: end;
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: clamp(2.25rem, 5.2vw, 4.75rem);
 
   @include up("md") {
-    grid-template-columns: 1fr minmax(16rem, 22rem);
+    grid-template-columns: minmax(0, 1fr) 30%;
+    gap: 2rem;
   }
 }
 
-.main {
-  max-width: 44rem;
+.narrow {
+  max-width: 6.2em;
+  font-size: clamp(2.5rem, 5.7vw, 5.125rem);
+}
+
+.wide {
+  max-width: 49rem;
 }
 
 .aside {
-  @include body("body");
+  color: var(--tone-muted, inherit);
 
-  margin: 0;
-  color: var(--tone-muted, #{color("slate")});
+  p {
+    margin: 0;
+  }
 }

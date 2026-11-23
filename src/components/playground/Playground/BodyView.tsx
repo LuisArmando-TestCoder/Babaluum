@@ -11,11 +11,15 @@ type BodyViewProps = {
   children: ReactNode;
 };
 
+const boxOf = (size: number) => (size > 0 ? { width: size, height: size } : { width: "max-content" });
+
 export const BodyView = ({ motion: values, size, children }: BodyViewProps) => (
   <motion.div
     className={styles.body}
-    style={{ x: values.x, y: values.y, rotate: values.rotate, scale: values.scale, width: size, height: size, marginLeft: -size / 2, marginTop: -size / 2 }}
+    style={{ x: values.x, y: values.y, rotate: values.rotate, scale: values.scale, ...boxOf(size) }}
   >
-    <div className={styles.figure}>{children}</div>
+    <motion.div className={styles.figure} style={{ scale: values.fit }}>
+      {children}
+    </motion.div>
   </motion.div>
 );

@@ -1,52 +1,31 @@
+import { OfferCard } from "@/components/cards/OfferCard";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { Button } from "@/components/primitives/Button";
-import { Heading, Highlight } from "@/components/primitives/Heading";
-import { Icon } from "@/components/primitives/Icon";
-import type { NotchPreset } from "@/components/primitives/NotchedSurface";
-import { NOTCHES, NotchedSurface } from "@/components/primitives/NotchedSurface";
-import { Pill } from "@/components/primitives/Pill";
+import { SplitWords } from "@/components/motion/SplitWords";
+import { Heading } from "@/components/primitives/Heading";
 import { Section } from "@/components/primitives/Section";
 import { PLANS } from "@/content/plans";
+import { twoTone } from "@/domain/design/words";
 import styles from "./PricingList.module.scss";
-
-const SHAPES: readonly NotchPreset[] = ["side", "ticket", "tab"];
 
 export const PricingList = () => (
   <Section>
     <Heading size="h2" align="center" className={styles.title}>
-      Planes accesibles para <Highlight>crecer en comunidad</Highlight>
+      <SplitWords segments={twoTone("Planes accesibles para", "crecer en comunidad")} />
     </Heading>
     <RevealGroup as="ul" className={styles.list}>
       {PLANS.map((plan, index) => (
-        <RevealItem as="li" key={plan.id}>
-          <NotchedSurface as="article" tone={plan.tone} notches={NOTCHES[SHAPES[index % SHAPES.length] ?? "tab"]} className={styles.plan}>
-            <div className={styles.intro}>
-              {plan.badge && (
-                <Pill tone="orange" tilt={-6} className={styles.badge}>
-                  {plan.badge}
-                </Pill>
-              )}
-              <h3 className={styles.name}>{plan.name}</h3>
-              <p className={styles.summary}>{plan.summary}</p>
-            </div>
-            <ul className={styles.features}>
-              {plan.features.map((feature) => (
-                <li key={feature}>
-                  <Icon name="tick-circle" className={styles.tick} />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <div className={styles.price}>
-              <p className={styles.amount}>
-                {plan.price}
-                <small>{plan.period}</small>
-              </p>
-              <Button href="/contacto" variant={plan.tone === "lime" ? "dark" : "light"}>
-                Elegir plan
-              </Button>
-            </div>
-          </NotchedSurface>
+        <RevealItem as="li" key={plan.id} index={index}>
+          <OfferCard
+            id={plan.id}
+            tone={plan.tone}
+            title={plan.name}
+            summary={plan.summary}
+            badge={plan.badge}
+            listTitle="Incluye"
+            items={plan.features}
+            headline={plan.price}
+            cta={{ label: "Elegir plan", href: `/contacto?plan=${plan.id}#mensaje` }}
+          />
         </RevealItem>
       ))}
     </RevealGroup>

@@ -6,7 +6,7 @@
   color: var(--tone-action-fg, #{color("white")});
   background: var(--tone-action-bg, #{color("navy")});
   border-radius: 50%;
-  transition: transform $duration-base $ease-spring;
+  transition: rotate $duration-slow $ease-spring;
 }
 
 .s {
@@ -16,7 +16,7 @@
 }
 
 .m {
-  width: 3.75rem;
-  height: 3.75rem;
-  font-size: 1.5rem;
+  width: clamp(2.75rem, 4.17vw, 3.75rem);
+  height: clamp(2.75rem, 4.17vw, 3.75rem);
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
 }

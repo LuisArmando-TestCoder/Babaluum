@@ -2,10 +2,11 @@
 
 import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
-import type { Accent } from "@/domain/design/tone";
+import type { CSSProperties } from "react";
+import { cx } from "@/domain/design/cx";
+import type { WordSegment } from "@/domain/design/words";
+import { toWords } from "@/domain/design/words";
 import styles from "./SplitWords.module.scss";
-
-export type WordSegment = { text: string; accent?: Accent };
 
 type SplitWordsProps = {
   segments: readonly WordSegment[];
@@ -13,35 +14,45 @@ type SplitWordsProps = {
   immediate?: boolean;
 };
 
+const STAGGER = 0.055;
+
 const containerVariants: Variants = {
   hidden: {},
-  shown: (delay: number) => ({ transition: { staggerChildren: 0.06, delayChildren: delay } }),
+  shown: (delay: number) => ({ transition: { staggerChildren: STAGGER, delayChildren: delay } }),
 };
 
 const wordVariants: Variants = {
-  hidden: { y: "110%", rotate: 6 },
-  shown: { y: "0%", rotate: 0, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { y: "118%", rotate: 7 },
+  shown: { y: "0%", rotate: 0, transition: { duration: 1, ease: [0.19, 1, 0.22, 1] } },
 };
 
-const toWords = (segments: readonly WordSegment[]) =>
-  segments.flatMap((segment, segmentIndex) =>
-    segment.text
-      .split(" ")
-      .filter(Boolean)
-      .map((word, wordIndex) => ({ key: `${segmentIndex}-${wordIndex}`, word, accent: segment.accent })),
-  );
+const startsAfter = (seconds: number) => ({ "--word-delay": `${seconds.toFixed(3)}s` }) as CSSProperties;
 
-export const SplitWords = ({ segments, delay = 0, immediate = false }: SplitWordsProps) => {
-  const trigger = immediate ? { animate: "shown" } : { whileInView: "shown", viewport: { once: true, amount: 0.4 } };
-  return (
-    <motion.span className={styles.words} variants={containerVariants} initial="hidden" custom={delay} {...trigger}>
-      {toWords(segments).map(({ key, word, accent }) => (
-        <span key={key} className={styles.mask}>
-          <motion.span className={styles.word} variants={wordVariants} data-accent={accent}>
-            {word}
-          </motion.span>
+type WordsProps = Pick<SplitWordsProps, "segments"> & { delay: number };
+
+const IntroWords = ({ segments, delay }: WordsProps) => (
+  <span className={styles.words}>
+    {toWords(segments).map(({ key, word, accent }, index) => (
+      <span key={key} className={styles.mask}>
+        <span className={cx(styles.word, styles.intro)} style={startsAfter(delay + index * STAGGER)} data-accent={accent}>
+          {word}
         </span>
-      ))}
-    </motion.span>
-  );
-};
+      </span>
+    ))}
+  </span>
+);
+
+const InViewWords = ({ segments, delay }: WordsProps) => (
+  <motion.span className={styles.words} variants={containerVariants} initial="hidden" custom={delay} whileInView="shown" viewport={{ once: true, amount: 0.5 }}>
+    {toWords(segments).map(({ key, word, accent }) => (
+      <span key={key} className={styles.mask}>
+        <motion.span className={styles.word} variants={wordVariants} data-accent={accent}>
+          {word}
+        </motion.span>
+      </span>
+    ))}
+  </motion.span>
+);
+
+export const SplitWords = ({ segments, delay = 0, immediate = false }: SplitWordsProps) =>
+  immediate ? <IntroWords segments={segments} delay={delay} /> : <InViewWords segments={segments} delay={delay} />;

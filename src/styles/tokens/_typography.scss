@@ -1,14 +1,42 @@
+@use "sass:math";
+
 $font-display: var(--font-display), "Anton", impact, sans-serif;
 $font-body: var(--font-body), "DM Sans", system-ui, sans-serif;
+$design-width: 1440;
+
+@function fluid($min, $max) {
+  @return clamp(#{math.div($min, 16)}rem, #{math.div($max, $design-width) * 100}vw, #{math.div($max, 16)}rem);
+}
+
 $type-scale: (
-  "mega": clamp(3.25rem, 9.4vw, 8.5rem),
-  "hero": clamp(2.75rem, 7vw, 6rem),
-  "h1": clamp(2.5rem, 5.2vw, 4.5rem),
-  "h2": clamp(2rem, 4vw, 3.5rem),
-  "h3": clamp(1.5rem, 2.4vw, 2.25rem),
-  "h4": clamp(1.25rem, 1.6vw, 1.5rem),
-  "lead": clamp(1.05rem, 1.2vw, 1.2rem),
-  "body": 1rem,
-  "small": 0.875rem,
-  "micro": 0.75rem,
+  "mega": fluid(50, 144),
+  "hero": fluid(48, 128),
+  "banner": fluid(40, 100),
+  "h1": fluid(40, 82),
+  "h2": fluid(34, 70),
+  "h3": fluid(28, 46),
+  "h4": fluid(22, 30),
+  "eyebrow": fluid(18, 24),
+  "numeral": fluid(64, 120),
+  "statement": fluid(22, 32),
+  "body": fluid(16, 18),
+  "action": fluid(15, 18),
+  "small": fluid(14, 16),
+  "micro": 0.875rem,
+);
+$leading: (
+  "mega": 1.167,
+  "hero": 1.06,
+  "banner": 1.01,
+  "h1": 1.02,
+  "h2": 1.07,
+  "h3": 1.24,
+  "h4": 1.2,
+  "eyebrow": 1.1,
+  "numeral": 0.9,
+  "statement": 1.28,
+  "body": 1.72,
+  "action": 1,
+  "small": 1.55,
+  "micro": 1.5,
 );

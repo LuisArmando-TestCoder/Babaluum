@@ -24,7 +24,7 @@ const PostPage = async ({ params }: PostPageProps) => {
     <>
       <PageHero eyebrow={post.category} title={post.title} lead={`${post.author} · ${formatPostDate(post.date)}`} align="start" companion="alien" />
       <ArticleBody post={post} />
-      <BlogGrid posts={related} title="Sigue leyendo" />
+      <BlogGrid posts={related} title="Sigue leyendo" filterable={false} />
       <FaqSection />
       <CtaBanner />
     </>

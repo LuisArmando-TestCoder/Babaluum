@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "design" as *;
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: map.get($z, "cursor");
+  display: none;
+  pointer-events: none;
+
+  @include hover {
+    display: block;
+  }
+
+  @include reduced-motion {
+    display: none;
+  }
+}
+
+.disc {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  background: color("lime");
+  border-radius: 50%;
+  opacity: 0;
+  transition:
+    scale $duration-base $ease-out,
+    opacity $duration-base $ease-out,
+    background-color $duration-base $ease-out;
+  translate: -50% -50%;
+  scale: 0.12;
+
+  [data-active="true"] & {
+    opacity: 1;
+  }
+
+  [data-mode="link"] & {
+    background: color("purple");
+    opacity: 0.55;
+    scale: 0.42;
+  }
+
+  [data-mode="hidden"] & {
+    opacity: 0;
+    scale: 0;
+  }
+
+  [data-mode="label"] & {
+    scale: 1;
+  }
+}
+
+.label {
+  @include display("eyebrow");
+
+  font-size: 1.05rem;
+  color: color("navy");
+  opacity: 0;
+  transition: opacity $duration-fast $ease-out;
+
+  [data-mode="label"] & {
+    opacity: 1;
+  }
+}

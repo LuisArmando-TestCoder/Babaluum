@@ -1,11 +1,8 @@
-@use "design" as *;
-
 .body {
   position: absolute;
   top: 0;
   left: 0;
-  display: grid;
-  place-items: center;
+  translate: -50% -50%;
   will-change: transform;
 }
 
@@ -14,5 +11,4 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  scale: var(--cast-scale, 1);
 }

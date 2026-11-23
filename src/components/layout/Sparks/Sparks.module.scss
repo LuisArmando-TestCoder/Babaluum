@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "design" as *;
+
+@keyframes fling {
+  to {
+    opacity: 0;
+    rotate: var(--spin);
+    scale: 0.3;
+    translate: calc(cos(var(--angle)) * var(--distance)) calc(sin(var(--angle)) * var(--distance));
+  }
+}
+
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: map.get($z, "cursor");
+  pointer-events: none;
+
+  @include reduced-motion {
+    display: none;
+  }
+}
+
+.burst {
+  position: absolute;
+}
+
+.spark {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2);
+  background: var(--accent);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: fling 620ms $ease-out var(--delay) forwards;
+}

@@ -1,29 +1,29 @@
+"use client";
+
 import { ProjectCard } from "@/components/cards/ProjectCard";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import type { NotchPreset } from "@/components/primitives/NotchedSurface";
 import { Section } from "@/components/primitives/Section";
 import { SectionHeader } from "@/components/primitives/SectionHeader";
+import type { Project } from "@/content/projects";
 import { PROJECTS } from "@/content/projects";
-import styles from "./ProjectsGrid.module.scss";
+import { FilteredGrid } from "../FilteredGrid";
 
-const SHAPES: readonly NotchPreset[] = ["photo", "side", "portrait", "tab"];
+const SHAPES: readonly NotchPreset[] = ["portrait", "frame", "photo", "side"];
+
+const renderProject = (project: Project, index: number) => (
+  <ProjectCard
+    href={`/proyectos/${project.slug}`}
+    title={project.title}
+    summary={project.summary}
+    cover={project.cover}
+    ratio="620 / 430"
+    shape={SHAPES[index % SHAPES.length]}
+  />
+);
 
 export const ProjectsGrid = () => (
   <Section spacing="m">
-    <SectionHeader eyebrow="Proyectos" accent="orange" title="Todos los proyectos" aside="Iniciativas creadas por nuestra comunidad con aliados y organizaciones." />
-    <RevealGroup as="ul" className={styles.grid}>
-      {PROJECTS.map((project, index) => (
-        <RevealItem as="li" key={project.slug}>
-          <ProjectCard
-            href={`/proyectos/${project.slug}`}
-            title={project.title}
-            summary={project.summary}
-            cover={project.cover}
-            meta={project.area}
-            shape={SHAPES[index % SHAPES.length]}
-          />
-        </RevealItem>
-      ))}
-    </RevealGroup>
+    <SectionHeader eyebrow="Proyectos" accent="orange" title="Todos los proyectos" measure="narrow" aside="Iniciativas creadas por nuestra comunidad con aliados y organizaciones." />
+    <FilteredGrid label="Filtrar proyectos por área" items={PROJECTS} tagOf={(project) => project.area} keyOf={(project) => project.slug} render={renderProject} />
   </Section>
 );

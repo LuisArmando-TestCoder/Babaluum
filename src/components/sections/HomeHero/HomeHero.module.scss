@@ -8,7 +8,7 @@
 }
 
 .stage {
-  padding: clamp(8rem, 12vw, 11.5rem) 0 clamp(5rem, 8vw, 7rem);
+  padding: clamp(7.5rem, 14.2vw, 12.8rem) 0 clamp(4.5rem, 4.4vw, 4.5rem);
 }
 
 .inner {
@@ -24,23 +24,22 @@
   display: inline-flex;
   gap: 0.6rem;
   align-items: center;
-  margin: 0 0 1.5rem;
-  font-size: 1.05rem;
+  margin: 0 0 clamp(0.75rem, 1.4vw, 1.25rem);
+  font-size: clamp(1rem, 1.39vw, 1.25rem);
+  line-height: 1.2;
+  color: color("sky");
 }
 
 .heart {
-  font-size: 1.4rem;
+  font-size: 1.25em;
   color: color("red");
 }
 
 .title {
+  @include display("mega");
+
   display: grid;
   margin: 0;
-  font-family: $font-display;
-  font-size: map.get($type-scale, "mega");
-  font-weight: 400;
-  line-height: 0.98;
-  text-transform: uppercase;
 }
 
 .line {
@@ -53,33 +52,29 @@
 .slot {
   position: relative;
   display: inline-block;
-  width: 0.98em;
-  height: 1.18em;
-  margin: -0.1em 0.12em 0;
-  vertical-align: middle;
+  flex: none;
+  width: 1.18em;
+  height: 1.4em;
+  margin: -0.2em 0.14em -0.2em 0.06em;
   background: color("lime");
-  rotate: -9deg;
+  transform-origin: 50% 60%;
 }
 
 .slotLabel {
   position: absolute;
-  bottom: 0.12em;
-  left: 0.04em;
+  top: 1.3em;
+  left: 0.5em;
   font-family: $font-body;
-  font-size: 0.115em;
+  font-size: 0.14em;
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.15;
   color: color("navy");
   text-align: start;
-  letter-spacing: 0.04em;
   writing-mode: vertical-rl;
-  rotate: 180deg;
 }
 
 .lead {
-  @include body("lead");
-
-  max-width: 38rem;
-  margin: 2.5rem 0 2rem;
+  max-width: 37.5rem;
+  margin: clamp(1rem, 2vw, 1.8rem) 0 clamp(1.25rem, 1.95vw, 1.75rem);
   color: color("sky");
 }

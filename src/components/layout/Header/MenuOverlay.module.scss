@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "design" as *;
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: map.get($z, "below");
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100dvh;
+  padding: 7rem $gutter 2.5rem;
+  overflow-y: auto;
+  color: color("white");
+  background: color("navy");
+
+  @include up("nav") {
+    display: none;
+  }
+}
+
+.links,
+.more {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.link {
+  @include display("h1");
+
+  display: inline-block;
+  padding-block: 0.1em;
+  color: inherit;
+  text-decoration: none;
+
+  &[aria-current="page"] {
+    color: color("lime");
+  }
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+
+  a {
+    color: color("sky");
+  }
+}

@@ -2,33 +2,41 @@
 @use "design" as *;
 
 .wrap {
-  padding-block: clamp(2rem, 5vw, 4rem);
+  padding-block: map.get($section, "l") clamp(1rem, 2vw, 1.75rem);
 }
 
 .banner {
-  --surface-radius: 2rem;
-
   color: color("white");
 }
 
 .stage {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
   align-items: center;
-  padding: clamp(4.5rem, 9vw, 7rem) 1.5rem clamp(3rem, 6vw, 4.5rem);
+  justify-content: space-between;
+  min-height: clamp(28rem, 41.7vw, 37.5rem);
+  padding: clamp(4.5rem, 7.9vw, 7.1rem) 1.25rem clamp(2.5rem, 4.5vw, 4.1rem);
   text-align: center;
 }
 
 .title {
+  @include display("h1");
+
   position: relative;
   z-index: map.get($z, "content");
-  margin: 0;
-  font-family: $font-display;
-  font-size: map.get($type-scale, "h1");
-  font-weight: 400;
-  line-height: 1.02;
-  text-transform: uppercase;
+  margin: 0 0 2.5rem;
+  line-height: 1.146;
+}
+
+.mask {
+  display: block;
+  padding-block: 0.1em;
+  margin-block: -0.1em;
+  overflow: hidden;
+}
+
+.line {
+  display: block;
 }
 
 .soft {
@@ -37,7 +45,7 @@
 
 .slot {
   display: inline-block;
-  width: 0.9em;
-  height: 0.8em;
-  vertical-align: -0.04em;
+  width: 0.56em;
+  height: 0.86em;
+  vertical-align: -0.02em;
 }

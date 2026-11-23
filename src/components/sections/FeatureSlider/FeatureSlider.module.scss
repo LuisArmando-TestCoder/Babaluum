@@ -1,0 +1,43 @@
+@use "design" as *;
+
+.grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+
+  @include up("md") {
+    grid-template-columns: minmax(0, 1fr) 54.7%;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+}
+
+.heading {
+  margin-bottom: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.title {
+  max-width: 11em;
+  margin-bottom: clamp(0.6rem, 1.3vw, 1.2rem);
+}
+
+.body {
+  max-width: 29rem;
+  margin: 0 0 clamp(1.25rem, 2.4vw, 2.2rem);
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: clamp(2rem, 4.2vw, 3.75rem);
+}
+
+.counter {
+  @include display("h3");
+
+  margin: 0;
+
+  span {
+    color: color("purple");
+  }
+}

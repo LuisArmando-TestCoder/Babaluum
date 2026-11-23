@@ -1,0 +1,1 @@
+export { PageCurtain } from "./PageCurtain";

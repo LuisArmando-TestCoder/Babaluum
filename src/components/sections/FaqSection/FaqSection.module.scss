@@ -5,18 +5,20 @@
   gap: 3rem;
 
   @include up("md") {
-    grid-template-columns: 0.8fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 49.2%;
+    gap: 0;
   }
 }
 
 .title {
-  max-width: 8ch;
+  max-width: 5.6em;
 }
 
 .note {
-  @include body("body");
+  max-width: 27.5rem;
+  margin: clamp(1.5rem, 3.6vw, 3.25rem) 0 0;
+}
 
-  max-width: 22rem;
-  margin: 2rem 0 0;
+.answers {
+  padding-top: 0.25rem;
 }

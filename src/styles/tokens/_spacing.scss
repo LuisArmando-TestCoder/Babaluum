@@ -9,14 +9,20 @@ $space: (
   "2xl": 4.5rem,
   "3xl": clamp(4.5rem, 9vw, 8rem),
 );
+$section: (
+  "s": clamp(2rem, 3.5vw, 3.125rem),
+  "m": clamp(3rem, 5vw, 4.5rem),
+  "l": clamp(3.5rem, 6.6vw, 6rem),
+);
 $radius: (
   "s": 0.75rem,
   "m": 1.25rem,
   "l": 1.75rem,
+  "xl": clamp(1.5rem, 2.8vw, 2.5rem),
   "pill": 999px,
 );
-$container: 1334px;
-$gutter: clamp(1.25rem, 4vw, 3.3rem);
+$container: 1280px;
+$gutter: clamp(1.25rem, 5.55vw, 5rem);
 $z: (
   "below": -1,
   "base": 0,
@@ -25,4 +31,6 @@ $z: (
   "playground": 3,
   "header": 50,
   "overlay": 100,
+  "cursor": 110,
+  "curtain": 120,
 );

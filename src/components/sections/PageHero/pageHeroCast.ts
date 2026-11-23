@@ -1,27 +1,36 @@
-import type { NpcSpec, TrinketSpec } from "@/components/playground/Playground";
+import type { RefObject } from "react";
+import type { NpcSpec, Placement, TrinketSpec } from "@/components/playground/Playground";
 import { alien, globe, robot, trinket } from "../cast/cast";
 
 export type Companion = "alien" | "globe" | "robot" | "none";
 
 type Align = "center" | "start";
 
-const COMPANIONS: Record<Exclude<Companion, "none">, (align: Align) => NpcSpec> = {
-  alien: (align) => alien(align === "center" ? { x: 0.86, y: 0.58 } : { x: 0.55, y: 0.35 }, 84),
-  globe: (align) => globe(align === "center" ? { x: 0.13, y: 0.62 } : { x: 0.6, y: 0.4 }, 70),
-  robot: (align) => robot({ home: align === "center" ? { x: 0.86, y: 0.6 } : { x: 0.62, y: 0.45 }, size: 130 }),
+type Slot = RefObject<HTMLElement | null>;
+
+const BESIDE_TITLE: Record<Exclude<Companion, "none">, Record<Align, Placement>> = {
+  alien: { center: { x: 1.05, y: 1.2 }, start: { x: 1.12, y: 0.2 } },
+  globe: { center: { x: -0.05, y: 1.15 }, start: { x: 1.12, y: 0.2 } },
+  robot: { center: { x: 1.06, y: 1.1 }, start: { x: 1.14, y: 0.4 } },
 };
 
-export const companionCast = (companion: Companion, align: Align): readonly NpcSpec[] =>
-  companion === "none" ? [] : [COMPANIONS[companion](align)];
+const ABOVE_TITLE: Record<Exclude<Companion, "none">, Placement> = {
+  alien: { x: 0.88, y: -0.5 },
+  globe: { x: 0.12, y: -0.5 },
+  robot: { x: 0.88, y: -0.55 },
+};
 
-export const pageHeroTrinkets = (align: Align): readonly TrinketSpec[] =>
-  align === "center"
-    ? [
-        trinket({ id: "hero-asterisk", kind: "asterisk", color: "purple", home: { x: 0.285, y: 0.44 }, size: 26 }),
-        trinket({ id: "hero-crown", kind: "crown", color: "amber", home: { x: 0.71, y: 0.36 }, size: 34 }),
-        trinket({ id: "hero-star", kind: "star", color: "lime", home: { x: 0.5, y: 0.66 }, size: 24 }),
-      ]
-    : [
-        trinket({ id: "hero-crown", kind: "crown", color: "amber", home: { x: 0.4, y: 0.3 }, size: 30 }),
-        trinket({ id: "hero-plus", kind: "plus", color: "green", home: { x: 0.9, y: 0.7 }, size: 22 }),
-      ];
+const COMPANIONS = { alien, globe, robot } as const;
+
+const SIZES = { alien: 104, globe: 88, robot: 150 } as const;
+
+export const companionCast = (companion: Companion, align: Align, title: Slot): readonly NpcSpec[] =>
+  companion === "none"
+    ? []
+    : [COMPANIONS[companion]({ anchor: { element: title }, home: BESIDE_TITLE[companion][align], compactHome: align === "center" ? ABOVE_TITLE[companion] : undefined, size: SIZES[companion], roams: true })];
+
+export const pageHeroTrinkets = (title: Slot): readonly TrinketSpec[] => [
+  trinket({ id: "hero-asterisk", kind: "asterisk", color: "purple", home: { x: 0.005, y: 0.12 }, size: 34, anchor: { element: title } }),
+  trinket({ id: "hero-crown", kind: "crown", color: "amber", home: { x: 0.885, y: 0.03 }, size: 44, anchor: { element: title } }),
+  trinket({ id: "hero-star", kind: "star", color: "lime", home: { x: 0.5, y: 0.93 }, size: 34, anchor: { element: title } }),
+];

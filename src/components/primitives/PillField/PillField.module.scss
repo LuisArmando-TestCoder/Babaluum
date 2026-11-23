@@ -1,0 +1,110 @@
+@use "sass:map";
+@use "design" as *;
+
+@keyframes spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+.pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: clamp(3.75rem, 5vw, 4.5rem);
+  padding: 0 0.5rem 0 1.75rem;
+  color: color("navy");
+  background: color("white");
+  border-radius: map.get($radius, "pill");
+  box-shadow: 0 0 0 0 color("navy");
+  transition: box-shadow $duration-base $ease-out;
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px color("navy");
+  }
+
+  &[data-invalid="true"] {
+    box-shadow: 0 0 0 3px color("red");
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 1.1rem 0.75rem 0 0;
+  font: inherit;
+  font-size: 1.125rem;
+  color: inherit;
+  background: none;
+  border: 0;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 1.75rem;
+  color: color("muted");
+  pointer-events: none;
+  transform-origin: 0 50%;
+  transition:
+    translate $duration-base $ease-out,
+    scale $duration-base $ease-out;
+  translate: 0 -50%;
+
+  .input:focus + &,
+  .input:not(:placeholder-shown) + & {
+    scale: 0.72;
+    translate: 0 -135%;
+  }
+}
+
+.go {
+  position: relative;
+  display: grid;
+  flex: none;
+  place-items: center;
+  height: calc(100% - 1rem);
+  aspect-ratio: 1;
+  font-size: 1.4rem;
+  color: color("white");
+  cursor: pointer;
+  background: color("navy");
+  border: 0;
+  border-radius: 50%;
+  transition:
+    background-color $duration-base $ease-out,
+    scale $duration-fast $ease-spring;
+
+  &:active {
+    scale: 0.9;
+  }
+
+  @include hover {
+    &:hover {
+      background: color("purple");
+    }
+  }
+
+  &[data-busy="true"] {
+    cursor: progress;
+
+    svg {
+      opacity: 0;
+    }
+
+    &::after {
+      position: absolute;
+      inset: 28%;
+      content: "";
+      border: 2px solid currentcolor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 700ms linear infinite;
+    }
+  }
+}

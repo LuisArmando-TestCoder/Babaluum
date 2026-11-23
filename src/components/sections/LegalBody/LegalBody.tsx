@@ -15,6 +15,16 @@ export const LegalBody = ({ sections }: LegalBodyProps) => (
               {paragraph}
             </p>
           ))}
+          {section.items && (
+            <ul className={styles.items}>
+              {section.items.map((item) => (
+                <li key={item.text} className={styles.item}>
+                  {item.term && <strong>{item.term}: </strong>}
+                  {item.text}
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       ))}
     </article>

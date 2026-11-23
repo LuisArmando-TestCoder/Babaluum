@@ -1,0 +1,32 @@
+@use "design" as *;
+
+.band {
+  display: grid;
+  gap: 2rem;
+  justify-items: start;
+  padding: clamp(4rem, 6.5vw, 5.75rem) clamp(1.5rem, 5.5vw, 5rem) clamp(3rem, 5.5vw, 5rem);
+  color: color("white");
+
+  @include up("md") {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+.copy {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.title {
+  @include display("h2");
+
+  margin: 0;
+}
+
+.text {
+  max-width: 32rem;
+  margin: 0;
+  color: color("sky");
+}

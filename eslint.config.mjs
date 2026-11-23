@@ -107,6 +107,10 @@ export default tseslint.config(
     rules: { "no-restricted-imports": forbid(ROUTE_INTERNALS), "no-restricted-syntax": ["error", ...SYNTAX_BANS] },
   },
   {
+    files: ["src/app/api/**/*.ts"],
+    rules: { "no-restricted-imports": forbid(COMPONENTS) },
+  },
+  {
     files: ["*.config.{ts,mjs,js}", "tooling/**/*.js"],
     rules: { "no-restricted-syntax": "off" },
   },

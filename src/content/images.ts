@@ -3,6 +3,7 @@ import type { ImageAsset } from "@/domain/design/media";
 const image = (folder: string, name: string, alt: string): ImageAsset => ({ src: `/images/${folder}/${name}.webp`, alt });
 
 export const IMAGES = {
+  founder: image("people", "mariana-murillo", "Mariana Murillo, fundadora de Babaluum, sonriendo sentada en un sofá"),
   stage: image("places", "stage", "Ponente compartiendo una charla frente a la comunidad Babaluum"),
   teamTable: image("places", "team-table", "Tres personas colaborando alrededor de una laptop"),
   loft: image("places", "loft", "Equipo trabajando en un estudio con luz cálida"),

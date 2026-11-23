@@ -1,0 +1,1 @@
+export { NewsletterBand } from "./NewsletterBand";

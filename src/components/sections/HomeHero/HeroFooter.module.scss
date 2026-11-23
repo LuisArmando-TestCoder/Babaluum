@@ -1,37 +1,43 @@
+@use "sass:map";
 @use "design" as *;
 
 .footer {
   display: grid;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: end;
   width: 100%;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(2rem, 2.1vw, 2.25rem);
   text-align: start;
 
   @include up("md") {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr minmax(0, 39.9%);
+    gap: 4rem;
+  }
+}
+
+.pitch {
+  padding-bottom: 1.6rem;
+
+  @include up("md") {
+    padding-left: 1.25rem;
   }
 }
 
 .tags {
-  display: grid;
-  justify-items: start;
-  width: max-content;
-  margin: 0 0 0.5rem 4.5rem;
+  width: 11rem;
+  height: 5.75rem;
+  margin: 0 0 0.9rem clamp(1.5rem, 4.4vw, 4rem);
 }
 
-.tag {
-  margin-top: -0.55rem;
-
-  &:nth-child(2) {
-    margin-left: -1.4rem;
-  }
+.tagNames {
+  @include visually-hidden;
 }
 
 .statement {
+  @include body("statement");
+
+  max-width: 13.4em;
   margin: 0;
-  font-size: clamp(1.4rem, 2vw, 1.9rem);
-  line-height: 1.15;
   text-transform: uppercase;
 }
 
@@ -41,13 +47,13 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: 230fr 256fr;
+  gap: clamp(0.75rem, 1.7vw, 1.5rem);
 }
 
 .note {
   @include body("micro");
 
-  margin: 1rem 0 0;
+  margin: 1.35rem 0 0;
   color: color("sky");
 }

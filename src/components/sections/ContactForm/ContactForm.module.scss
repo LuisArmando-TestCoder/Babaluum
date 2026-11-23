@@ -2,7 +2,7 @@
 
 .form {
   display: grid;
-  gap: 2.25rem 2.5rem;
+  gap: clamp(2.75rem, 5.5vw, 5rem) clamp(1.5rem, 2.8vw, 2.5rem);
 
   @include up("md") {
     grid-template-columns: 1fr 1fr;
@@ -14,15 +14,32 @@
   grid-column: 1 / -1;
 }
 
+.trap {
+  @include visually-hidden;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
-.sent {
+.send {
+  min-width: min(100%, 23.75rem);
+}
+
+.feedback {
+  max-width: 30rem;
   margin: 0;
   font-weight: 600;
-  color: color("green");
+
+  &[data-status="sent"],
+  &[data-status="handoff"] {
+    color: color("green");
+  }
+
+  &[data-status="failed"] {
+    color: color("red");
+  }
 }

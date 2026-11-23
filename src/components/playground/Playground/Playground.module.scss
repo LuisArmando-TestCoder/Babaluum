@@ -2,8 +2,6 @@
 @use "design" as *;
 
 .playground {
-  --cast-scale: 1;
-
   position: relative;
   isolation: isolate;
   touch-action: pan-y;

@@ -54,3 +54,5 @@ export const PROJECTS: readonly Project[] = [
 ];
 
 export const findProject = (slug: string): Project | undefined => PROJECTS.find((item) => item.slug === slug);
+
+export const PROJECT_SLIDES = PROJECTS.map((item) => ({ href: `/proyectos/${item.slug}`, title: item.title, summary: item.summary, cover: item.cover }));

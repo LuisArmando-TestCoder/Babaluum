@@ -5,13 +5,12 @@
   font-family: $font-display;
   font-size: map.get($type-scale, $size);
   font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.005em;
+  line-height: map.get($leading, $size);
   text-transform: uppercase;
 }
 
 @mixin body($size: "body") {
   font-family: $font-body;
   font-size: map.get($type-scale, $size);
-  line-height: 1.6;
+  line-height: map.get($leading, $size);
 }

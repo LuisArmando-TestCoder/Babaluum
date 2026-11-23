@@ -2,58 +2,102 @@
 @use "design" as *;
 
 .button {
+  box-shadow: 0 0 0 4px var(--color-navy);
+  position: relative;
+  z-index: map.get($z, "base");
   display: inline-flex;
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
-  min-height: 3.25rem;
-  padding: 0 1.6rem;
+  overflow: hidden;
   font-family: $font-body;
-  font-size: 0.95rem;
+  font-size: map.get($type-scale, "action");
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  line-height: 1;
   text-decoration: none;
+  text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
   border: 0;
   border-radius: map.get($radius, "pill");
   transition:
-    transform $duration-base $ease-spring,
-    background-color $duration-base $ease-out,
+    scale $duration-base $ease-spring,
     color $duration-base $ease-out;
 
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: map.get($z, "below");
+    content: "";
+    background: var(--button-fill);
+    border-radius: inherit;
+    transition: translate $duration-slow $ease-in-out;
+    translate: 0 101%;
+  }
+
   &:active {
-    transform: scale(0.96);
+    scale: 0.96;
+  }
+
+  &:disabled {
+    cursor: progress;
+    opacity: 0.6;
   }
 
   &:focus-visible {
-    outline: 2px solid color("purple");
+    outline: 2px solid color("lime");
     outline-offset: 3px;
   }
 
   @include hover {
     &:hover {
-      transform: translateY(-2px) rotate(-1.5deg);
+      color: var(--button-fill-ink);
     }
 
-    &:hover .arrow {
-      transform: translateX(4px);
+    &:hover::before {
+      translate: 0 0;
+    }
+
+    &:hover .arrowOut {
+      translate: 130% 0;
+    }
+
+    &:hover .arrowIn {
+      translate: 0 0;
     }
   }
 }
 
+.m {
+  min-height: clamp(2.875rem, 3.75vw, 3.375rem);
+  padding: 0 clamp(1.25rem, 1.95vw, 1.75rem);
+}
+
+.l {
+  min-height: clamp(3.25rem, 4.86vw, 4.375rem);
+  padding: 0 clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
 .light {
+  --button-fill: #{color("lime")};
+  --button-fill-ink: #{color("navy")};
+
   color: color("navy");
   background: color("white");
 }
 
 .dark {
+  --button-fill: #{color("purple")};
+  --button-fill-ink: #{color("white")};
+
   color: color("white");
   background: color("navy");
 }
 
 .accent {
+  --button-fill: #{color("lime")};
+  --button-fill-ink: #{color("navy")};
+
   color: color("white");
   background: color("purple");
 }
@@ -63,6 +107,18 @@
 }
 
 .arrow {
-  font-size: 1.25rem;
-  transition: transform $duration-base $ease-spring;
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+  font-size: 1.35em;
+}
+
+.arrowOut,
+.arrowIn {
+  grid-area: 1 / 1;
+  transition: translate $duration-slow $ease-in-out;
+}
+
+.arrowIn {
+  translate: -130% 0;
 }

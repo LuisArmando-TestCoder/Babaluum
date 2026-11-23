@@ -13,7 +13,7 @@ const PlansPage = () => (
   <>
     <PageHero eyebrow="Planes" title="Planes de membresía" lead="Elige cómo quieres crecer con la comunidad Babaluum." accent="lime" companion="globe" />
     <PricingList />
-    <ValuesRow />
+    <ValuesRow accent="purple" />
     <ImpactBanner />
     <ReviewsGrid limit={2} withHeader />
     <FaqSection />

@@ -2,20 +2,24 @@
 @use "design" as *;
 
 .hero {
-  position: relative;
+  --surface-radius: 0;
+
   color: color("white");
-  background: color("navy");
 }
 
 .stage {
-  padding: clamp(9rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
+  padding: clamp(8rem, 13.6vw, 12.25rem) 0 clamp(6rem, 11.6vw, 10.5rem);
+}
+
+.start .stage {
+  padding: clamp(8rem, 12.6vw, 11.4rem) 0 clamp(4rem, 9.7vw, 8.75rem);
 }
 
 .inner {
   position: relative;
   z-index: map.get($z, "content");
   display: grid;
-  gap: 1.5rem;
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
 }
 
 .center .inner {
@@ -27,27 +31,36 @@
   align-items: end;
 
   @include up("md") {
-    grid-template-columns: 1.4fr 1fr;
-    gap: 4rem;
+    grid-template-columns: minmax(0, 1fr) 36%;
+    gap: 2rem;
   }
 }
 
 .title {
+  @include display("hero");
+
   margin: 0;
-  font-family: $font-display;
-  font-size: map.get($type-scale, "hero");
-  font-weight: 400;
-  line-height: 0.98;
-  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .start .title {
-  font-size: map.get($type-scale, "h1");
+  @include display("h1");
+
+  max-width: 10em;
+}
+
+.titleBox {
+  display: inline-block;
 }
 
 .lead {
-  @include body("body");
-
-  max-width: 27rem;
   color: color("sky");
+}
+
+.center .lead {
+  max-width: 29rem;
+}
+
+.start .lead {
+  color: color("white");
 }

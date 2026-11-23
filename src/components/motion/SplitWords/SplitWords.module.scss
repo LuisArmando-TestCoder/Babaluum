@@ -1,11 +1,20 @@
+@use "design" as *;
+
+@keyframes rise {
+  from {
+    translate: 0 118%;
+    rotate: 7deg;
+  }
+}
+
 .words {
   display: inline;
 }
 
 .mask {
   display: inline-block;
-  padding-block: 0.06em;
-  margin-block: -0.06em;
+  padding-block: 0.12em;
+  margin-block: -0.12em;
   margin-inline-end: 0.22em;
   overflow: hidden;
   vertical-align: top;
@@ -19,4 +28,13 @@
   display: inline-block;
   color: var(--accent, inherit);
   transform-origin: 0 100%;
+  will-change: transform;
+}
+
+.intro {
+  animation: rise 1s $ease-out var(--word-delay, 0s) backwards;
+
+  @include reduced-motion {
+    animation: none;
+  }
 }

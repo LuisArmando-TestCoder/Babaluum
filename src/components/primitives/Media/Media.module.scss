@@ -1,11 +1,10 @@
-@use "design" as *;
-
 .media {
+  --shutter: var(--tone-bg);
+
   margin: 0;
   isolation: isolate;
 }
 
 .image {
   object-fit: cover;
-  transition: scale $duration-slow $ease-out;
 }

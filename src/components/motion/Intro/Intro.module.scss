@@ -1,0 +1,16 @@
+@use "design" as *;
+
+@keyframes rise {
+  from {
+    opacity: 0.35;
+    translate: 0 1.5rem;
+  }
+}
+
+.intro {
+  animation: rise 1s $ease-out var(--intro-delay, 0s) backwards;
+
+  @include reduced-motion {
+    animation: none;
+  }
+}

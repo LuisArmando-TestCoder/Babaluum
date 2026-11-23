@@ -1,41 +1,48 @@
 @use "design" as *;
 
+@keyframes boop {
+  40% {
+    rotate: -22deg;
+    scale: 1.08;
+  }
+}
+
 .logo {
   display: inline-flex;
-  gap: 0.25em;
+  gap: 0.102em;
   align-items: center;
+  line-height: 1;
   color: inherit;
   text-decoration: none;
 }
 
 .s {
-  font-size: 1.35rem;
+  font-size: clamp(1.75rem, 2.43vw, 2.1875rem);
 }
 
 .l {
-  font-size: clamp(2.5rem, 6vw, 4.6rem);
+  font-size: clamp(3.25rem, 8.05vw, 7.25rem);
+}
+
+.mark,
+.word {
+  flex: none;
+  height: 1em;
+  background: currentcolor;
 }
 
 .mark {
-  width: 1.55em;
-  height: 1.55em;
-}
+  aspect-ratio: 1;
+  mask: url("/brand/babaluum-mark.svg") center / contain no-repeat;
 
-.disc {
-  fill: currentcolor;
-}
-
-.glyph {
-  fill: none;
-  stroke: var(--logo-contrast, #{color("navy")});
-  stroke-linecap: round;
-  stroke-width: 3.2;
+  @include hover {
+    .logo:hover & {
+      animation: boop 520ms $ease-spring;
+    }
+  }
 }
 
 .word {
-  font-family: $font-body;
-  font-weight: 250;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
+  aspect-ratio: 1014 / 284;
+  mask: url("/brand/babaluum-wordmark.svg") center / contain no-repeat;
 }
