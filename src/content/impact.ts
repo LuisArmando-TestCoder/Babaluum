@@ -1,7 +1,7 @@
 export type ImpactCopy = { title: string; note: string; pills: { top: string; left: string; right: string; bottom: string } };
 
 export const IMPACT: ImpactCopy = {
-  title: "Redefinimos el impacto digital con iniciativas que generan cambios reales",
-  note: "Contenido con propósito que conecta, inspira y transforma comunidades.",
-  pills: { top: "Contenido visual", left: "Crecimiento", right: "Estrategia", bottom: "Impacto medible" },
+  title: "Convertimos el conocimiento en impacto social real",
+  note: "Aprende, transforma y comparte con una comunidad que crece junta.",
+  pills: { top: "Tecnología", left: "Comunidad", right: "Sostenibilidad", bottom: "Desarrollo profesional" },
 };

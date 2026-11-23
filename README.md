@@ -105,6 +105,6 @@ Sizes come from the 1440px design files and scale fluidly below that width (`flu
 
 ## Content status
 
-The homepage shows the client's page text exactly as written, section by section, from `src/content/home.ts` (`hero`, `integrated`, `whyChoose`, `method`, `impact`, `blogs`). The template's English text is still there on purpose until the client approves a replacement; swap a text by editing its entry in that file. The inner pages are in Spanish and adapted the template's English placeholder text, so treat programs, plans, prices, team names, testimonials, projects, blog posts and legal text as **placeholders to replace**. Photos were extracted from the design files.
+Homepage copy lives in `src/content/home.ts`, one entry per section (`hero`, `integrated`, `whyChoose`, `method`, `impact`, `blogs`). The hero and `integrated` texts are the client's own. The rest replaced the template's English text with Spanish copy inferred from what the client said about Babaluum, so it still needs their approval; `content.test.ts` fails if template text comes back. The inner pages are in Spanish and adapted the template's English placeholder text, so treat programs, plans, prices, team names, testimonials, projects, blog posts and legal text as **placeholders to replace**. Photos were extracted from the design files.
 
 "Iniciar sesión" points to the contact page until a sign-in provider is chosen.

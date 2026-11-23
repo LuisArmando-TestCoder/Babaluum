@@ -17,7 +17,7 @@ Judgment calls that are not checks:
 - Check every visual change at 390px wide first; most visitors arrive on phones. A character placed over text needs a `compactHome`.
 - Above-the-fold entrances use `Intro` or `SplitWords immediate` (CSS), never a `motion` element that starts hidden.
 - Sounds only answer something the visitor did, stay under 0.3s, and never carry information on their own. Add a cue in `domain/sound/cues.ts` and point to it with `data-sound`; don't add audio files or play sound on hover, scroll or load.
-- Copy lives in `src/content`. Components take it through props. Homepage copy is `src/content/home.ts`, keyed by section; it is the client's text verbatim, so don't translate or reword it unasked.
+- Copy lives in `src/content`. Components take it through props. Homepage copy is `src/content/home.ts`, keyed by section. The hero and `integrated` texts are the client's own words: don't reword them unasked. Never bring back template text; `content.test.ts` checks for it.
 - New visuals reuse the notch presets in `NotchedSurface/presets.ts` before inventing a shape.
 - Sizes and spacing come from the design files. Measure the reference before changing a token, and use `fluid()` so it scales.
 - Characters react through `PoseValues`. Add a channel to `domain/rig/pose.ts` (with a test) instead of reading the DOM inside a rig.

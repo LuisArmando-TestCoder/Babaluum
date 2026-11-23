@@ -9,8 +9,8 @@ export const SITE = {
   email: "hola@babaluum.com",
   phone: "+506 4000 0000",
   address: "San José, Costa Rica",
-  blurb: "Experience growth through innovative digital marketing designed to reach, inspire, and deliver results.",
-  copyright: "Copyright © 2025 Babaluum Studio. All rights reserved.",
+  blurb: "Contenido, comunidad e iniciativas para aprender, transformar y compartir.",
+  copyright: "Copyright © 2025 Babaluum Studio. Todos los derechos reservados.",
 } as const;
 
 export const PRIMARY_NAV: readonly NavLink[] = [
@@ -27,10 +27,10 @@ export const HEADER_ACTIONS = {
 } as const;
 
 export const FOOTER_NAV: readonly NavLink[] = [
-  { label: "About", href: "/nosotros" },
-  { label: "Services", href: "/programas" },
-  { label: "Plans", href: "/planes" },
-  { label: "Contact us", href: "/contacto" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Programas", href: "/programas" },
+  { label: "Planes", href: "/planes" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export const EXPLORE_NAV: readonly NavLink[] = [
