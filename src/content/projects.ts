@@ -18,39 +18,77 @@ export type Project = {
   results: readonly Stat[];
 };
 
-const RESULTS: readonly Stat[] = [
-  { value: "4.5X", label: "Más participación", body: "Frente a la campaña anterior de la organización.", tone: "purple" },
-  { value: "10K+", label: "Personas inscritas", body: "En las actividades de la campaña.", tone: "green" },
-  { value: "10M+", label: "Impresiones", body: "Generadas en redes sociales.", tone: "navy" },
-];
+type ProjectSeed = Pick<Project, "slug" | "title" | "summary" | "cover" | "area" | "objective" | "challenges" | "solution" | "strategy">;
 
-type ProjectSeed = Pick<Project, "slug" | "title" | "summary" | "cover" | "area">;
-
-const project = ({ slug, title, summary, cover, area }: ProjectSeed): Project => ({
-  slug,
-  title,
-  summary,
-  cover,
-  client: "Comunidad Babaluum",
-  area,
-  duration: "6 semanas",
-  objective: `Lanzar ${title.toLowerCase()} y conectar a la comunidad con una causa concreta, construyendo una presencia digital sólida y medible.`,
-  challenges: ["Entrar a una conversación saturada con un mensaje propio.", "Generar confianza con una audiencia nueva.", "Llegar a públicos diversos en varias plataformas."],
-  solution: "Diseñamos una identidad clara, una serie de contenidos cortos y una ruta de voluntariado que convirtió la atención en acción.",
-  strategy: "Combinamos narrativa, datos de audiencia y alianzas locales. Cada pieza tuvo un objetivo y una métrica, y ajustamos semana a semana según los resultados.",
-  gallery: [IMAGES.prototype, IMAGES.loft],
-  results: RESULTS,
-});
+const initiative = (seed: ProjectSeed): Project => ({ ...seed, client: "Babaluum", duration: "Iniciativa permanente", gallery: [IMAGES.prototype, IMAGES.loft], results: [] });
 
 export const PROJECTS: readonly Project[] = [
-  project({ slug: "reciclaje-que-suma", title: "Reciclaje que suma", summary: "Campaña de generación de voluntarios para una organización ambiental.", cover: IMAGES.shelf, area: "Conciencia ambiental" }),
-  project({ slug: "marca-con-proposito", title: "Marca con propósito", summary: "Identidad y alcance para un emprendimiento social.", cover: IMAGES.sketchbook, area: "Creación de contenido" }),
-  project({ slug: "avatar-educativo", title: "Avatar educativo", summary: "Un personaje con IA que enseña finanzas a jóvenes.", cover: IMAGES.avatar, area: "Inteligencia artificial" }),
-  project({ slug: "feria-de-talento", title: "Feria de talento", summary: "Evento híbrido que conectó estudiantes y empresas.", cover: IMAGES.posters, area: "Desarrollo profesional" }),
-  project({ slug: "costas-limpias", title: "Costas limpias", summary: "Serie documental corta sobre limpieza de playas.", cover: IMAGES.wall, area: "Conciencia ambiental" }),
-  project({ slug: "ilustra-tu-barrio", title: "Ilustra tu barrio", summary: "Convocatoria de ilustración comunitaria.", cover: IMAGES.illustration, area: "Creación de contenido" }),
-  project({ slug: "movilidad-verde", title: "Movilidad verde", summary: "Prototipo de app para viajes compartidos.", cover: IMAGES.prototype, area: "Inteligencia artificial" }),
-  project({ slug: "noches-de-podcast", title: "Noches de podcast", summary: "Temporada en vivo de ¿Cómo lo hacen?.", cover: IMAGES.setup, area: "Podcast" }),
+  initiative({
+    slug: "podcast-como-lo-hacen",
+    title: "¿Cómo lo hacen? Podcast",
+    summary: "Conversaciones con quienes ya recorrieron el camino.",
+    cover: IMAGES.setup,
+    area: "Desarrollo profesional",
+    objective: "Acercar a estudiantes y profesionales las historias, los procesos y los aprendizajes de personas que ya lograron lo que ellos buscan.",
+    challenges: ["Hacer preguntas que de verdad sirvan a quien escucha.", "Convertir una trayectoria larga en ideas aplicables.", "Mantener conversaciones cercanas y sin poses."],
+    solution: "Entrevistas en las que cada invitado cuenta cómo lo hizo: qué funcionó, qué no y qué haría distinto.",
+    strategy: "Elegimos invitados de las tres áreas de Babaluum y compartimos cada episodio con la comunidad junto al contenido del blog.",
+  }),
+  initiative({
+    slug: "blog-babaluum",
+    title: "Blog Babaluum",
+    summary: "Artículos y guías sobre IA, sostenibilidad y crecimiento.",
+    cover: IMAGES.desk,
+    area: "Contenido",
+    objective: "Publicar contenido accesible que ayude a entender lo que está cambiando en tecnología, sostenibilidad y desarrollo personal y profesional.",
+    challenges: ["Explicar temas complejos con claridad.", "Sostener un ritmo constante de publicación.", "Dar espacio a voces nuevas."],
+    solution: "Un blog escrito por jóvenes autores con acompañamiento editorial, organizado por categorías.",
+    strategy: "Cada artículo parte de una pregunta real de la comunidad y se comparte en el newsletter y en redes.",
+  }),
+  initiative({
+    slug: "newsletter-semanal",
+    title: "Newsletter semanal",
+    summary: "Contenido exclusivo en tu correo, cada semana.",
+    cover: IMAGES.windows,
+    area: "Comunidad",
+    objective: "Mantener a la comunidad al día con contenido, convocatorias y eventos sin depender de los algoritmos de las redes.",
+    challenges: ["Llegar a la bandeja de entrada con algo que valga abrir.", "Reunir en un solo lugar blog, podcast y eventos."],
+    solution: "Un boletín gratuito con lo más reciente de Babaluum y las oportunidades abiertas.",
+    strategy: "Quien se suscribe recibe primero las convocatorias de programas y las invitaciones a eventos.",
+  }),
+  initiative({
+    slug: "programa-de-escritores",
+    title: "Programa de escritores",
+    summary: "Encontramos el talento, lo desarrollamos y lo potenciamos.",
+    cover: IMAGES.pencils,
+    area: "Programas",
+    objective: "Dar a jóvenes apasionados por la escritura un espacio para formarse y publicar con su firma.",
+    challenges: ["Encontrar voces con algo que decir.", "Acompañar el proceso de escribir, editar y publicar."],
+    solution: "Un programa en el que cada autor trabaja sus artículos con retroalimentación antes de publicarlos en el blog.",
+    strategy: "Los artículos se organizan en las áreas de Babaluum y se difunden con toda la comunidad.",
+  }),
+  initiative({
+    slug: "programa-de-voluntariado",
+    title: "Programa de voluntariado",
+    summary: "Voluntarios que lideran proyectos de impacto social.",
+    cover: IMAGES.teamTable,
+    area: "Programas",
+    objective: "Que nuestro equipo de voluntarios aprenda y se desarrolle en un ambiente profesional liderando proyectos e iniciativas de impacto social.",
+    challenges: ["Dar responsabilidades reales desde el inicio.", "Acompañar a cada persona en su crecimiento."],
+    solution: "Un voluntariado en el que cada integrante asume un rol dentro de las iniciativas de Babaluum.",
+    strategy: "Los voluntarios apoyan eventos, contenido y proyectos, y forman una red entre sí.",
+  }),
+  initiative({
+    slug: "eventos-babaluum",
+    title: "Eventos Babaluum",
+    summary: "De tecnología a crecimiento personal y profesional.",
+    cover: IMAGES.stage,
+    area: "Eventos",
+    objective: "Crear espacios para aprender en persona y conectar con gente con intereses afines.",
+    challenges: ["Reunir temas distintos bajo una misma comunidad.", "Lograr que cada encuentro deje algo aplicable."],
+    solution: "Eventos que van desde tecnología hasta espacios de crecimiento personal y profesional.",
+    strategy: "Trabajamos con aliados y colaboraciones especiales para llevar cada evento más lejos.",
+  }),
 ];
 
 export const findProject = (slug: string): Project | undefined => PROJECTS.find((item) => item.slug === slug);

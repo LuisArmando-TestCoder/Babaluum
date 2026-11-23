@@ -23,7 +23,7 @@ const renderProject = (project: Project, index: number) => (
 
 export const ProjectsGrid = () => (
   <Section spacing="m">
-    <SectionHeader eyebrow="Proyectos" accent="orange" title="Todos los proyectos" measure="narrow" aside="Iniciativas creadas por nuestra comunidad con aliados y organizaciones." />
+    <SectionHeader eyebrow="Iniciativas" accent="orange" title="Todo lo que hacemos" measure="narrow" aside="Contenido, programas y eventos de la comunidad Babaluum." />
     <FilteredGrid label="Filtrar proyectos por área" items={PROJECTS} tagOf={(project) => project.area} keyOf={(project) => project.slug} render={renderProject} />
   </Section>
 );

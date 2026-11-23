@@ -15,8 +15,8 @@ type ProgramsGridProps = { eyebrow?: string; title?: string; aside?: string; car
 
 export const ProgramsGrid = ({
   eyebrow = "Nuestros programas",
-  title = "Programas diseñados para impulsar resultados reales",
-  aside = "Crece con experiencias de aprendizaje diseñadas para inspirar, conectar y generar impacto.",
+  title = "Áreas de contenido y programas",
+  aside = "Contenido accesible e iniciativas para crecer, adaptarte y liderar el cambio.",
   cards = PROGRAMS,
 }: ProgramsGridProps) => (
   <Section>

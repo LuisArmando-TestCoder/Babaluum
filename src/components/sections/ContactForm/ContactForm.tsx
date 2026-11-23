@@ -20,7 +20,7 @@ type Status = "idle" | "sending" | "sent" | "handoff" | "failed";
 const FEEDBACK: Record<Status, string> = {
   idle: "",
   sending: "Enviando tu mensaje…",
-  sent: "Mensaje enviado. Te respondemos en menos de 48 horas.",
+  sent: "Mensaje enviado. Te respondemos pronto por correo.",
   handoff: "Abrimos tu aplicación de correo con el mensaje listo. Presiona enviar ahí.",
   failed: `No pudimos enviar el mensaje. Inténtalo de nuevo o escribe a ${SITE.email}.`,
 };
@@ -86,7 +86,7 @@ const PrefilledForm = () => {
 
 export const ContactForm = () => (
   <Section spacing="m" id="mensaje">
-    <SectionHeader eyebrow="Contacto" accent="purple" title="Envíanos un mensaje" aside="Cuéntanos qué te gustaría crear y te respondemos en menos de 48 horas." />
+    <SectionHeader eyebrow="Contacto" accent="purple" title="Envíanos un mensaje" aside="¿Tienes dudas sobre nuestros programas o quieres colaborar con Babaluum? Cuéntanos." />
     <Suspense fallback={<Form subject="" />}>
       <PrefilledForm />
     </Suspense>

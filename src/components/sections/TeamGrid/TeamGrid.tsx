@@ -13,7 +13,7 @@ type TeamGridProps = { members: readonly Member[]; withHeader?: boolean };
 export const TeamGrid = ({ members, withHeader = false }: TeamGridProps) => (
   <Section spacing={withHeader ? "m" : "l"}>
     {withHeader && (
-      <SectionHeader eyebrow="Nosotros" title="Conoce al equipo" measure="narrow" aside="Personas curiosas que acompañan a nuestra comunidad todos los días." />
+      <SectionHeader eyebrow="Nosotros" title="Conoce al equipo" measure="narrow" aside="Detrás de Babaluum hay escritores, pasantes y voluntarios que hacen posible cada iniciativa." />
     )}
     <RevealGroup as="ul" className={styles.grid}>
       {members.map((member, index) => (

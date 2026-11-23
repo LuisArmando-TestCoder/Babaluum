@@ -20,7 +20,7 @@ const Meta = ({ project }: ProjectDetailProps) => (
   <NotchedSurface tone="lime" className={styles.meta}>
     <dl className={styles.facts}>
       {[
-        ["Cliente", project.client],
+        ["Impulsa", project.client],
         ["Área", project.area],
         ["Duración", project.duration],
       ].map(([label, value]) => (
@@ -66,15 +66,17 @@ export const ProjectDetail = ({ project }: ProjectDetailProps) => (
       <p className={styles.text}>{project.solution}</p>
     </Reveal>
     <Heading size="h2" className={styles.results}>
-      <ScrubWords segments={twoTone("Más impacto a través de", "la comunidad y los datos.")} />
+      <ScrubWords segments={twoTone("Más impacto a través de", "la comunidad y el conocimiento.")} />
     </Heading>
-    <RevealGroup as="ul" className={styles.stats}>
-      {project.results.map((stat, index) => (
-        <RevealItem as="li" key={stat.value} index={index}>
-          <StatCard value={stat.value} label={stat.label} body={stat.body} tone={stat.tone} shape={STAT_SHAPES[index % STAT_SHAPES.length]} />
-        </RevealItem>
-      ))}
-    </RevealGroup>
+    {project.results.length > 0 && (
+      <RevealGroup as="ul" className={styles.stats}>
+        {project.results.map((stat, index) => (
+          <RevealItem as="li" key={stat.value} index={index}>
+            <StatCard value={stat.value} label={stat.label} body={stat.body} tone={stat.tone} shape={STAT_SHAPES[index % STAT_SHAPES.length]} />
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    )}
     <Reveal className={styles.block}>
       <h2 className={styles.label}>Estrategia</h2>
       <p className={styles.text}>{project.strategy}</p>

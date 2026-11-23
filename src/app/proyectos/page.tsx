@@ -18,8 +18,8 @@ const FEATURED = PROJECTS.slice(0, 5).map((project) => ({
 
 const ProjectsPage = () => (
   <>
-    <PageHero eyebrow="Proyectos" title="Proyectos que amamos" lead="Lo que nuestra comunidad crea cuando las ideas encuentran propósito." accent="orange" />
-    <FeatureSlider heading="Proyecto destacado" subject="Proyecto" slides={FEATURED} ctaLabel="Ver proyecto" />
+    <PageHero eyebrow="Proyectos" title="Nuestras iniciativas" lead="Podcast, blog, programas y eventos: lo que hacemos para acercar el conocimiento." accent="orange" />
+    <FeatureSlider heading="Iniciativa destacada" subject="Iniciativa" slides={FEATURED} ctaLabel="Ver iniciativa" />
     <ProjectsGrid />
     <FaqSection />
     <CtaBanner />

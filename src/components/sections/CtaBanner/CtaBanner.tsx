@@ -15,8 +15,8 @@ const TRINKETS = [
   trinket({ id: "cta-crown", kind: "crown", color: "lime", home: { x: 0.215, y: 0.185 }, size: 42 }),
   trinket({ id: "cta-star", kind: "star", color: "purple", home: { x: 0.27, y: 0.527 }, size: 34 }),
   trinket({ id: "cta-plus", kind: "plus", color: "lime", home: { x: 0.83, y: 0.365 }, size: 34 }),
-  pill({ id: "cta-metrics", label: "Impacto medible", tone: "lime", tilt: 5, home: { x: 0.655, y: 0.188 } }),
-  pill({ id: "cta-strategy", label: "Estrategia", tone: "red", tilt: -8, home: { x: 0.3, y: 0.707 } }),
+  pill({ id: "cta-metrics", label: "Comunidad", tone: "lime", tilt: 5, home: { x: 0.655, y: 0.188 } }),
+  pill({ id: "cta-strategy", label: "Contenido", tone: "red", tilt: -8, home: { x: 0.3, y: 0.707 } }),
   sticker("cta-sticker", { x: 0.765, y: 0.63 }),
 ];
 

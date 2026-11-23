@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { PageHero } from "@/components/sections/PageHero";
-import { ReviewsGrid } from "@/components/sections/ReviewsGrid";
 import { TestimonialSpotlight } from "@/components/sections/TestimonialSpotlight";
 
 export const metadata: Metadata = { title: "Testimonios" };
 
 const ReviewsPage = () => (
   <>
-    <PageHero eyebrow="Testimonios" title="Lo que dice la comunidad" lead="Historias reales de personas que crearon con propósito." accent="green" />
-    <ReviewsGrid />
+    <PageHero eyebrow="Testimonios" title="Historias de la comunidad" lead="Aquí vamos a reunir las experiencias de quienes forman parte de Babaluum. Mientras tanto, te dejamos las palabras de nuestra fundadora." accent="green" />
     <TestimonialSpotlight />
     <CtaBanner />
   </>

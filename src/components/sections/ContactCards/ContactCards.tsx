@@ -10,9 +10,9 @@ import styles from "./ContactCards.module.scss";
 type Channel = { title: string; lines: ReadonlyArray<{ text: string; href?: string }>; icon: IconName; shape: NotchPreset };
 
 const CHANNELS: readonly Channel[] = [
-  { title: "Escríbenos", lines: [{ text: SITE.email, href: `mailto:${SITE.email}` }, { text: "Respondemos en 48 horas" }], icon: "sms", shape: "stat" },
-  { title: "Visítanos", lines: [{ text: SITE.address }, { text: "Lunes a viernes, 9:00 a 17:00" }], icon: "picture-frame", shape: "ticket" },
-  { title: "Llámanos", lines: [{ text: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` }, { text: "También por WhatsApp" }], icon: "call", shape: "tab" },
+  { title: "Escríbenos", lines: [{ text: SITE.email, href: `mailto:${SITE.email}` }, { text: "Dudas, ideas y colaboraciones" }], icon: "sms", shape: "stat" },
+  { title: "Dónde estamos", lines: [{ text: SITE.address }, { text: "Eventos presenciales y en línea" }], icon: "picture-frame", shape: "ticket" },
+  { title: "Síguenos", lines: [{ text: "@babaluumcr", href: "https://www.instagram.com/babaluumcr/" }, { text: "También en Facebook y LinkedIn" }], icon: "instagram", shape: "tab" },
 ];
 
 export const ContactCards = () => (

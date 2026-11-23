@@ -4,10 +4,9 @@ export const SITE = {
   name: "Babaluum",
   tagline: "Aprende, Transforma y Comparte",
   description:
-    "El hub para crear contenido y un impacto social real. Conectamos a estudiantes, profesionales y organizaciones en inteligencia artificial, conciencia ambiental y desarrollo profesional.",
+    "Somos un hub de aprendizaje y contenido para quienes quieren crecer, adaptarse y liderar el cambio en inteligencia artificial, conciencia ambiental y desarrollo profesional.",
   url: "https://babaluum.com",
   email: "hola@babaluum.com",
-  phone: "+506 4000 0000",
   address: "San José, Costa Rica",
   blurb: "Contenido, comunidad e iniciativas para aprender, transformar y compartir.",
   copyright: "Copyright © 2025 Babaluum Studio. Todos los derechos reservados.",
@@ -36,7 +35,7 @@ export const FOOTER_NAV: readonly NavLink[] = [
 export const EXPLORE_NAV: readonly NavLink[] = [
   { label: "Equipo", href: "/equipo" },
   { label: "Cómo trabajamos", href: "/metodo" },
-  { label: "Proyectos", href: "/proyectos" },
+  { label: "Iniciativas", href: "/proyectos" },
   { label: "Testimonios", href: "/testimonios" },
   { label: "Babaluum Studio", href: "/studio" },
 ];
@@ -47,7 +46,7 @@ export const LEGAL_NAV: readonly NavLink[] = [
 ];
 
 export const SOCIALS = [
-  { label: "X", href: "https://x.com", icon: "x-social" },
-  { label: "Facebook", href: "https://facebook.com", icon: "facebook" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
+  { label: "Instagram", href: "https://www.instagram.com/babaluumcr/", icon: "instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/babaluumcr", icon: "facebook" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/babaluum", icon: "linkedin" },
 ] as const;

@@ -13,10 +13,10 @@ export const metadata: Metadata = { title: "Cómo trabajamos" };
 const MethodPage = () => (
   <>
     <PageHero eyebrow="Cómo trabajamos" title="Nuestro proceso" lead="Un camino claro para pasar de la idea al impacto." accent="green" companion="robot" />
-    <Statement lead="Nuestro compromiso es ayudarte a lograr tus metas con" highlight="iniciativas innovadoras y decisiones basadas en datos." />
+    <Statement lead="Creamos contenido accesible, conectamos personas" highlight="y facilitamos experiencias que inspiran." />
     <ValuesRow framed />
     <MethodAccordion />
-    <FeaturedCarousel eyebrow="Proyectos" title="Proyectos destacados" subject="Proyecto" slides={PROJECT_SLIDES} />
+    <FeaturedCarousel eyebrow="Iniciativas" title="Iniciativas destacadas" subject="Iniciativa" slides={PROJECT_SLIDES} />
     <FaqSection />
     <CtaBanner />
   </>

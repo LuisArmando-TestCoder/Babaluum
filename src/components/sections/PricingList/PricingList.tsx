@@ -10,7 +10,7 @@ import styles from "./PricingList.module.scss";
 export const PricingList = () => (
   <Section>
     <Heading size="h2" align="center" className={styles.title}>
-      <SplitWords segments={twoTone("Planes accesibles para", "crecer en comunidad")} />
+      <SplitWords segments={twoTone("Tres formas de", "ser parte de Babaluum")} />
     </Heading>
     <RevealGroup as="ul" className={styles.list}>
       {PLANS.map((plan, index) => (
@@ -24,7 +24,7 @@ export const PricingList = () => (
             listTitle="Incluye"
             items={plan.features}
             headline={plan.price}
-            cta={{ label: "Elegir plan", href: `/contacto?plan=${plan.id}#mensaje` }}
+            cta={{ label: "Quiero participar", href: `/contacto?plan=${plan.id}#mensaje` }}
           />
         </RevealItem>
       ))}

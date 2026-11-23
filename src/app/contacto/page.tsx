@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Contacto" };
 
 const ContactPage = () => (
   <>
-    <PageHero eyebrow="Contacto" title="Conectemos" lead="Escríbenos, visítanos o llámanos. Nos encanta conocer ideas nuevas." accent="purple" />
+    <PageHero eyebrow="Contacto" title="Conectemos" lead="¿Tienes dudas sobre nuestros programas o deseas colaborar con Babaluum? Escríbenos." accent="purple" />
     <ContactCards />
     <ContactForm />
     <FaqSection />

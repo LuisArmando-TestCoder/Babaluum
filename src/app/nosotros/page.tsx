@@ -15,18 +15,18 @@ import { LEADERSHIP } from "@/content/team";
 export const metadata: Metadata = { title: "Nosotros" };
 
 const MISSION = [
-  "En Babaluum somos más que una comunidad: somos tu equipo de crecimiento. Nacimos para transformar ideas en proyectos con impacto real.",
-  "Con mentores experimentados y herramientas actuales, ayudamos a estudiantes, profesionales y organizaciones a desbloquear su potencial.",
-  "Desde emprendimientos hasta ONG consolidadas, acompañamos a personas de muchas industrias a crecer en el mundo digital.",
+  "Somos un hub de aprendizaje y contenido para quienes quieren crecer, adaptarse y liderar el cambio.",
+  "Creamos contenido accesible, conectamos personas con ideas afines y facilitamos experiencias que inspiran transformación profesional.",
+  "Explora nuestro podcast, lee artículos, súmate a programas o participa en eventos. Tu recorrido empieza acá.",
 ];
 
 const AboutPage = () => (
   <>
-    <PageHero eyebrow="Nosotros" title="Descubre Babaluum" lead="Crecimiento a través de experiencias diseñadas para generar resultados." companion="globe" />
-    <Statement lead="En Babaluum creemos que cada persona tiene el potencial" highlight="de lograr resultados extraordinarios" />
-    <MissionSplit title="Nuestra misión y visión" paragraphs={MISSION} image={IMAGES.teamTable} stat={{ value: "400+", label: "Proyectos lanzados en distintas industrias" }} cta={{ label: "Contáctanos", href: "/contacto" }} />
-    <PhotoPair eyebrow="Nosotros" title="Por qué elegir Babaluum" aside="Crecimiento a través de experiencias diseñadas para alcanzar, inspirar y generar resultados." images={[IMAGES.loft, IMAGES.moodboard]} />
-    <Statement align="start" lead="Con años de experiencia y un historial" highlight="de resultados medibles" />
+    <PageHero eyebrow="Nosotros" title="Descubre Babaluum" lead="Nuestra visión, nuestra misión y el concepto detrás de la plataforma y la comunidad." companion="globe" />
+    <Statement lead="Somos el hub de contenido para mentes" highlight="que quieren cambiar el mundo" />
+    <MissionSplit title="Nuestra misión y visión" paragraphs={MISSION} image={IMAGES.teamTable} stat={{ value: "+1500", label: "Personas ya son parte de la comunidad" }} cta={{ label: "Contáctanos", href: "/contacto" }} />
+    <PhotoPair eyebrow="Nosotros" title="Por qué elegir Babaluum" aside="Contenido, comunidad e iniciativas para aprender, transformar y compartir." images={[IMAGES.loft, IMAGES.moodboard]} />
+    <Statement align="start" lead="Conectamos inteligencia artificial, sostenibilidad" highlight="y desarrollo profesional" />
     <StatsRow stats={IMPACT_STATS} />
     <ValuesRow />
     <TeamGrid members={LEADERSHIP} withHeader />

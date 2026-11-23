@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Equipo" };
 
 const TeamPage = () => (
   <>
-    <PageHero eyebrow="Nuestro equipo" title="Conoce al equipo" lead="Personas curiosas que acompañan a nuestra comunidad todos los días." companion="robot" />
+    <PageHero eyebrow="Nuestro equipo" title="Conoce al equipo" lead="Conoce a quienes están detrás de Babaluum, su inspiración y el proceso de creación de la plataforma." companion="robot" />
     <TeamGrid members={TEAM} />
     <CtaBanner />
   </>

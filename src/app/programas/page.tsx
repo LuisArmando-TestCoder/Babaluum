@@ -12,19 +12,19 @@ import { PROGRAM_OFFERS } from "@/content/programs";
 export const metadata: Metadata = { title: "Programas" };
 
 const PROGRAMS_INTRO = [
-  "Cada programa combina aprendizaje práctico, mentoría y un proyecto real que puedes mostrar al terminar.",
-  "Trabajamos en tres áreas clave: inteligencia artificial, conciencia ambiental y desarrollo profesional.",
+  "Publicamos contenido en tres áreas: inteligencia artificial, conciencia ambiental y desarrollo profesional.",
+  "Además abrimos programas para que escritores, pasantes y voluntarios se formen participando en nuestras iniciativas.",
 ];
 
 const ProgramsPage = () => (
   <>
-    <PageHero eyebrow="Programas" title="Nuestros programas" lead="Experiencias diseñadas para aprender, transformar y compartir." accent="green" />
-    <MissionSplit title="Rutas a tu medida" highlight="para crecer con propósito" emphasis="loud" paragraphs={PROGRAMS_INTRO} image={IMAGES.workshop} />
-    <ProgramsGrid eyebrow="Programas" title="Programas de calidad" />
+    <PageHero eyebrow="Programas" title="Nuestros programas" lead="Contenido, programas y eventos para aprender, transformar y compartir." accent="green" />
+    <MissionSplit title="Contenido e iniciativas" highlight="para crecer con propósito" emphasis="loud" paragraphs={PROGRAMS_INTRO} image={IMAGES.workshop} />
+    <ProgramsGrid eyebrow="Programas" title="Áreas de contenido y programas" />
     <ProgramsList
       eyebrow="Elige tu ruta"
-      title="Qué vas a lograr en cada programa"
-      aside="Cada programa termina en algo real que puedes mostrar. Elige uno y te contamos las próximas fechas."
+      title="Qué encuentras en cada uno"
+      aside="Elige lo que te interesa y te contamos cómo participar."
       offers={PROGRAM_OFFERS}
     />
     <TestimonialSpotlight />

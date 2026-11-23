@@ -16,14 +16,14 @@ export const TestimonialSpotlight = ({ layout = "split" }: TestimonialSpotlightP
   <Section className={styles[layout]}>
     <div className={styles.grid}>
       {layout === "split" && (
-        <Media image={FEATURED_TESTIMONIAL.portrait} ratio="400 / 472" notches={NOTCHES.portrait} sizes="(min-width: 900px) 30vw, 80vw" />
+        <Media image={FEATURED_TESTIMONIAL.portrait} ratio="1290 / 1807" notches={NOTCHES.portrait} sizes="(min-width: 900px) 30vw, 80vw" />
       )}
       <div className={styles.copy}>
         <Reveal>
           <span className={styles.badge} aria-hidden="true">
             <Icon name="quote" />
           </span>
-          <Eyebrow accent="red">Testimonios</Eyebrow>
+          <Eyebrow accent="red">{FEATURED_TESTIMONIAL.eyebrow}</Eyebrow>
         </Reveal>
         <Heading size="h2" align={layout === "centered" ? "center" : "start"}>
           <SplitWords segments={twoTone(FEATURED_TESTIMONIAL.lead, FEATURED_TESTIMONIAL.highlight)} />
