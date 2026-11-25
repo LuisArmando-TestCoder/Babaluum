@@ -44,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0 0 1.4rem;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   color: color("slate");
 }
 
@@ -103,7 +103,7 @@
 
   small {
     margin-top: 0.4rem;
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     color: color("muted");
   }
 
@@ -131,7 +131,7 @@
   align-items: center;
   padding: 0.5rem 0.6rem;
   margin: 0;
-  font-size: 0.5625rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
@@ -166,7 +166,7 @@
 
 .centeredNote {
   margin-bottom: 1.5rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: color("muted");
 }
 
@@ -190,7 +190,7 @@
   }
 
   small {
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     color: color("muted");
   }
 }
@@ -259,7 +259,7 @@
     position: absolute;
     bottom: 100%;
     left: 50%;
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     font-weight: 700;
     translate: -50% -0.2rem;
   }
@@ -272,14 +272,14 @@
 .caption {
   padding-top: 0.5rem;
   margin: 0;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   color: color("muted");
   text-align: end;
 }
 
 .metricLabel {
   margin: 1.25rem 0 0;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: color("muted");
 }
 

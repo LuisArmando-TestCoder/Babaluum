@@ -22,6 +22,15 @@
   text-align: center;
 }
 
+.shelf {
+  display: none;
+
+  @include down("sm") {
+    display: block;
+    height: 8rem;
+  }
+}
+
 .foot {
   display: flex;
   flex-wrap: wrap;

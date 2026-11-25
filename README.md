@@ -6,6 +6,7 @@ The Babaluum site: Next.js 16 (App Router), TypeScript, SCSS modules, Lenis smoo
 npm install
 npm run dev        # http://localhost:3000
 npm run check      # typecheck + eslint + stylelint + tests
+npm run verify:mobile  # with the site running: every sitemap route at 360/390/430px
 npm run build
 ```
 
@@ -48,6 +49,8 @@ These are checks, not conventions:
 | No enums, no default exports outside routes, no non-null `!` | ESLint |
 | Small functions: max 3 params, complexity 10, 90 lines | ESLint |
 | z-index from tokens, no `transition: all`, no `!important` | Stylelint |
+| No text under 12px (0.75rem) | Stylelint |
+| On phones (360, 390, 430px): no sideways scroll, tap targets of at least 44px, no text under 12px, no character or trinket over text, links or buttons | `npm run verify:mobile` |
 
 ## The cast: characters and physics
 
@@ -78,7 +81,8 @@ One orchestrated moment per page, then motion that answers the visitor:
 - **Newsletter** (`NewsletterBand`, `domain/newsletter`) posts to `/api/newsletter`, which adds the email to MailerLite when `MAILERLITE_API_KEY` is set. `MAILERLITE_GROUP_ID` picks the group; `MAILERLITE_GROUP_ESCRITORES` and `MAILERLITE_GROUP_STUDIO` optionally send the writers' waitlist and the Studio waitlist to their own groups. The form (`SignupFlow`) asks one thing at a time: email, then an optional name, then a confirmation. The email is saved at the first step, so skipping the name loses nothing. Without the key, production says the newsletter isn't connected yet; `npm run dev` walks through the steps without saving and says so.
 - **Program pages** (`/programas/[slug]`) come from `src/content/programPages.ts`. The sign-up buttons read `SIGNUP_LINKS` at the top of that file; they point to the contact form until the real form links arrive.
 - **Babaluum Studio** (`/studio`) is a coming-soon page; its copy is `src/content/studio.ts`.
-- **Phones first.** Hero text animates in CSS so it paints before scripts load. Characters take a `compactHome` for stages under 640px and stop roaming there, so headlines stay readable.
+- **Phones first.** Hero text animates in CSS so it paints before scripts load. Under 640px a body can take a `compactHome` and a `compactAnchor` (another element to sit beside, or `null` for the stage), and characters stop roaming, so headlines stay readable. On the home page the robot and alien flank the main button; on inner pages the companion sits above the eyebrow. A slot that a character is meant to fill inside a word (the globe in "t·do") is marked `data-cast-seat`. Tap targets use the `tap-target` and `tap-icon` mixins.
+- **`verify:mobile`** (`tooling/verify-mobile`) opens every route from `sitemap.xml` in Chrome with reduced motion, scrolls each cast stage into view and fails on sideways scroll, small tap targets, tiny text, or a drawing that covers text or a control. Set `CHROME_PATH` if Chrome isn't in the default place, `BASE_URL` for another server, and `ROUTES=/,/metodo` to check a few pages.
 - **Sound** is synthesized with the Web Audio API (`domain/sound`, `providers/Sound`); there are no audio files. Every link and button answers with a quiet press and release; disclosures play an opening or closing tone; forms play a success or error tone. A control opts out with `data-sound="none"`, names a cue with `data-sound`, and shifts pitch with `data-sound-rate`. The mute button sits in the header on small screens and in the bottom-left corner on wide ones, and the choice is remembered in `localStorage`.
 - **Sparks** (`layout/Sparks`) throws a small particle burst from any element marked `data-burst`; large buttons carry it by default.
 - **Scroll shading** (`motion/ScrubText`) starts a text faint and fills it in reading order as it scrolls into view. Section asides, card summaries and body paragraphs use it.

@@ -29,7 +29,8 @@ export const HomeHero = ({ copy }: HomeHeroProps) => {
   const heading = useRef<HTMLHeadingElement>(null);
   const robotSlot = useRef<HTMLSpanElement>(null);
   const tagsSlot = useRef<HTMLDivElement>(null);
-  const [npcs] = useState(() => heroNpcs(heading, robotSlot));
+  const actionSlot = useRef<HTMLDivElement>(null);
+  const [npcs] = useState(() => heroNpcs(heading, { robot: robotSlot, action: actionSlot }));
   const [trinkets] = useState(() => [...heroTrinkets(heading), ...heroTags(tagsSlot, copy.tags)]);
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end start"] });
   const drift = (distance: number) => (progress: number) => progress * distance;
@@ -72,11 +73,13 @@ export const HomeHero = ({ copy }: HomeHeroProps) => {
             {copy.lead}
           </Intro>
           <Intro delay={INTRO + 0.72}>
-            <Magnetic>
-              <Button href={copy.action.href} size="l">
-                {copy.action.label}
-              </Button>
-            </Magnetic>
+            <div ref={actionSlot}>
+              <Magnetic>
+                <Button href={copy.action.href} size="l">
+                  {copy.action.label}
+                </Button>
+              </Magnetic>
+            </div>
           </Intro>
           <HeroFooter copy={copy} tagsSlot={tagsSlot} />
         </Container>

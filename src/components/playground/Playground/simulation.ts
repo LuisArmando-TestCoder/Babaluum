@@ -12,7 +12,7 @@ import type { World } from "@/domain/physics/world";
 import { createWorld, resizeWorld, stepWorld } from "@/domain/physics/world";
 import { castScaleFor } from "@/domain/rig/castScale";
 import type { Homes } from "@/domain/rig/placement";
-import { homeFor } from "@/domain/rig/placement";
+import { forStage, homeFor } from "@/domain/rig/placement";
 import { derivePose } from "@/domain/rig/pose";
 import type { PoseValues } from "@/hooks/poseValues";
 import { createPoseValues, writePose } from "@/hooks/poseValues";
@@ -29,7 +29,7 @@ export type BodyMotion = {
 
 export type View<Spec> = { spec: Spec; motion: BodyMotion };
 
-type Layout = Homes & { size: number; anchor?: AnchorSpec };
+type Layout = Homes & { size: number; anchor?: AnchorSpec; compactAnchor?: AnchorSpec | null };
 
 export type Simulation = {
   world: World;
@@ -54,7 +54,7 @@ const createMotion = (): BodyMotion => ({
   pose: createPoseValues(),
 });
 
-const toLayout = ({ home, compactHome, size, anchor }: NpcSpec | TrinketSpec): Layout => ({ home, compactHome, size, anchor });
+const toLayout = ({ home, compactHome, size, anchor, compactAnchor }: NpcSpec | TrinketSpec): Layout => ({ home, compactHome, size, anchor, compactAnchor });
 
 export const createSimulation = (npcs: readonly NpcSpec[], trinkets: readonly TrinketSpec[]): Simulation => {
   const npcBodies = npcs.map((spec) => createBody({ ...spec, kind: "npc", home: vec() }));
@@ -78,26 +78,32 @@ export const createSimulation = (npcs: readonly NpcSpec[], trinkets: readonly Tr
 
 type Stage = { origin: DOMRect; castScale: number };
 
-const placeFreely = (body: Body, layout: Layout, { origin, castScale }: Stage): number => {
-  const home = homeFor(layout, origin.width);
+type Spot = { home: Placement; size: number; anchor: AnchorSpec | null };
+
+const placeFreely = (body: Body, { home, size }: Spot, { origin, castScale }: Stage): number => {
   body.home = vec(home.x * origin.width, home.y * origin.height);
-  return layout.size > 0 ? castScale : 1;
+  return size > 0 ? castScale : 1;
 };
 
-const placeOnAnchor = (body: Body, layout: Layout, { origin, castScale }: Stage): number => {
-  const rect = layout.anchor?.element.current?.getBoundingClientRect();
-  if (!rect) return placeFreely(body, layout, { origin, castScale });
-  const home = homeFor(layout, origin.width);
-  body.home = vec(rect.left - origin.left + rect.width * home.x, rect.top - origin.top + rect.height * home.y);
-  const fit = layout.anchor?.fit;
-  if (layout.size === 0) return 1;
-  return fit ? (rect.height * fit) / layout.size : castScale;
+const placeOnAnchor = (body: Body, spot: Spot, stage: Stage): number => {
+  const rect = spot.anchor?.element.current?.getBoundingClientRect();
+  if (!rect) return placeFreely(body, spot, stage);
+  const { home, size, anchor } = spot;
+  body.home = vec(rect.left - stage.origin.left + rect.width * home.x, rect.top - stage.origin.top + rect.height * home.y);
+  if (size === 0) return 1;
+  return anchor?.fit ? (rect.height * anchor.fit) / size : stage.castScale;
 };
+
+const spotFor = (layout: Layout, stageWidth: number): Spot => ({
+  home: homeFor(layout, stageWidth),
+  size: layout.size,
+  anchor: forStage(layout.anchor ?? null, layout.compactAnchor, stageWidth),
+});
 
 const layOut = (simulation: Simulation, stage: Stage): void => {
   for (const body of simulation.world.bodies) {
-    const layout = simulation.layouts.get(body.id) ?? { home: CENTER, size: 0 };
-    const fit = layout.anchor ? placeOnAnchor(body, layout, stage) : placeFreely(body, layout, stage);
+    const spot = spotFor(simulation.layouts.get(body.id) ?? { home: CENTER, size: 0 }, stage.origin.width);
+    const fit = spot.anchor ? placeOnAnchor(body, spot, stage) : placeFreely(body, spot, stage);
     body.radius = body.baseRadius * fit;
     simulation.motions.get(body.id)?.fit.set(fit);
   }
@@ -130,7 +136,7 @@ export const tickSimulation = (simulation: Simulation, { root, pointer, wind, de
   const origin = root.getBoundingClientRect();
   resizeWorld(simulation.world, { width: origin.width, height: origin.height });
   layOut(simulation, { origin, castScale: castScaleFor(origin.width) });
-  if (!simulation.settled) settle(simulation);
+  if (!simulation.settled || !running) settle(simulation);
   const localPointer = pointer ? vec(pointer.x - origin.left, pointer.y - origin.top) : null;
   if (running) stepWorld(simulation.world, delta / 1000, { pointer: localPointer, wind });
   for (const body of simulation.world.bodies) {

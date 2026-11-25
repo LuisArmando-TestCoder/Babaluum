@@ -18,3 +18,17 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+@mixin tap-target {
+  display: inline-flex;
+  align-items: center;
+  min-height: $tap-target;
+}
+
+@mixin tap-icon($glyph) {
+  display: inline-grid;
+  place-items: center;
+  width: $tap-target;
+  height: $tap-target;
+  margin: calc((#{$glyph} - #{$tap-target}) / 2);
+}

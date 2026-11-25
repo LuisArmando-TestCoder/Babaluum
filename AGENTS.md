@@ -10,11 +10,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Babaluum rules
 
-Most rules are enforced by `npm run check`. Run it before you finish. If you correct an agent mistake, add a lint rule or a test, not a sentence here.
+Most rules are enforced by `npm run check`. Run it before you finish, and run `npm run verify:mobile` against a running build for any visual change. If you correct an agent mistake, add a lint rule or a test, not a sentence here.
 
 Judgment calls that are not checks:
 
-- Check every visual change at 390px wide first; most visitors arrive on phones. A character placed over text needs a `compactHome`.
+- Look at every visual change at 390px wide first; most visitors arrive on phones. `verify:mobile` catches overlaps and overflow, not taste.
 - Above-the-fold entrances use `Intro` or `SplitWords immediate` (CSS), never a `motion` element that starts hidden.
 - Sounds only answer something the visitor did, stay under 0.3s, and never carry information on their own. Add a cue in `domain/sound/cues.ts` and point to it with `data-sound`; don't add audio files or play sound on hover, scroll or load.
 - Copy lives in `src/content`. Components take it through props. Homepage copy is `src/content/home.ts`, keyed by section. The hero and `integrated` texts are the client's own words: don't reword them unasked. Never bring back template text; `content.test.ts` checks for it.

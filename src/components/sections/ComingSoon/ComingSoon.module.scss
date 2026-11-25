@@ -64,6 +64,8 @@
 }
 
 .back {
+  @include tap-target;
+
   color: color("white");
   text-underline-offset: 0.3em;
 }

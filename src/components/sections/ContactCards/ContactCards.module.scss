@@ -37,6 +37,8 @@
   margin: 0;
 
   a {
+    @include tap-target;
+
     color: inherit;
     text-decoration-color: color("purple");
     text-underline-offset: 0.25em;

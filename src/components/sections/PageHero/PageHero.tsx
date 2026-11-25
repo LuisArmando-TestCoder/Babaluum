@@ -31,8 +31,9 @@ const EDGE_NOTCH: readonly Notch[] = [{ edge: "right", at: "52%" }];
 
 export const PageHero = ({ eyebrow, title, lead, accent = "red", companion = "alien", align = "center" }: PageHeroProps) => {
   const titleBox = useRef<HTMLSpanElement>(null);
-  const [npcs] = useState(() => companionCast(companion, align, titleBox));
-  const [trinkets] = useState(() => (align === "center" ? pageHeroTrinkets(titleBox) : []));
+  const eyebrowBox = useRef<HTMLSpanElement>(null);
+  const [npcs] = useState(() => companionCast(companion, align, { title: titleBox, eyebrow: eyebrowBox }));
+  const [trinkets] = useState(() => (align === "center" ? pageHeroTrinkets({ title: titleBox, eyebrow: eyebrowBox }) : []));
 
   return (
     <NotchedSurface as="section" tone="navy" notches={align === "start" ? EDGE_NOTCH : []} className={cx(styles.hero, styles[align])}>
@@ -40,9 +41,11 @@ export const PageHero = ({ eyebrow, title, lead, accent = "red", companion = "al
         <Container className={styles.inner}>
           <div className={styles.heading}>
             <Intro delay={INTRO}>
-              <Eyebrow accent={accent} size="l">
-                {eyebrow}
-              </Eyebrow>
+              <span ref={eyebrowBox} className={styles.eyebrowBox}>
+                <Eyebrow accent={accent} size="l">
+                  {eyebrow}
+                </Eyebrow>
+              </span>
             </Intro>
             <h1 className={styles.title}>
               <span ref={titleBox} className={styles.titleBox}>

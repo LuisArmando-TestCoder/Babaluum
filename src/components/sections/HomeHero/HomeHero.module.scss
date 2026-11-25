@@ -58,6 +58,13 @@
   margin: -0.2em 0.14em -0.2em 0.06em;
   background: color("lime");
   transform-origin: 50% 60%;
+
+  @include down("sm") {
+    width: auto;
+    height: auto;
+    padding: 0.1em 0.14em;
+    margin: 0 0.12em;
+  }
 }
 
 .slotLabel {
@@ -71,6 +78,17 @@
   color: color("navy");
   text-align: start;
   writing-mode: vertical-rl;
+
+  @include down("sm") {
+    position: static;
+    display: block;
+    font-family: $font-display;
+    font-size: 0.3em;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    writing-mode: horizontal-tb;
+  }
 }
 
 .lead {

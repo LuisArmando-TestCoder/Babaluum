@@ -17,6 +17,7 @@ type BodySpecBase = {
   size: number;
   seed: number;
   anchor?: AnchorSpec;
+  compactAnchor?: AnchorSpec | null;
 };
 
 export type NpcSpec = BodySpecBase & {

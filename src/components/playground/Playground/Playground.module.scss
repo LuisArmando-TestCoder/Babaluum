@@ -11,6 +11,7 @@
   @include cover;
 
   z-index: map.get($z, "playground");
+  overflow-x: clip;
   pointer-events: none;
   transition: opacity $duration-slow $ease-out;
 }

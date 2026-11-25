@@ -7,20 +7,21 @@ import { Sticker } from "@/components/characters/Sticker";
 import { Pill } from "@/components/primitives/Pill";
 import type { Tone } from "@/domain/design/tone";
 import { AMBER, GREEN, LIME, ORANGE, PURPLE, RED, SKY } from "@/components/characters/palette";
-import type { AnchorSpec, NpcSpec, Placement, TrinketSpec } from "@/components/playground/Playground";
+import type { NpcSpec, Placement, TrinketSpec } from "@/components/playground/Playground";
 
 export const TRINKET_COLORS = { lime: LIME, sky: SKY, purple: PURPLE, orange: ORANGE, amber: AMBER, red: RED, green: GREEN } as const;
 
 export type TrinketColor = keyof typeof TRINKET_COLORS;
 
-type TrinketOptions = { id: string; kind: ArtifactKind; color: TrinketColor; home: Placement; size?: number; anchor?: AnchorSpec };
+type Staging = Pick<TrinketSpec, "home" | "compactHome" | "anchor" | "compactAnchor">;
+
+type TrinketOptions = Staging & { id: string; kind: ArtifactKind; color: TrinketColor; size?: number };
 
 const seedOf = (id: string): number => [...id].reduce((sum, char) => (sum * 31 + char.charCodeAt(0)) % 997, 7) / 997;
 
-export const trinket = ({ id, kind, color, home, size = 30, anchor }: TrinketOptions): TrinketSpec => ({
+export const trinket = ({ id, kind, color, size = 30, ...staging }: TrinketOptions): TrinketSpec => ({
   id,
-  home,
-  anchor,
+  ...staging,
   size,
   radius: size * 0.55,
   mass: 1,
@@ -28,25 +29,20 @@ export const trinket = ({ id, kind, color, home, size = 30, anchor }: TrinketOpt
   render: (energy) => <Artifact kind={kind} color={TRINKET_COLORS[color]} energy={energy} />,
 });
 
-type PillOptions = {
+type PillOptions = Staging & {
   id: string;
   label: string;
   tone: Tone;
   tilt: number;
-  home: Placement;
-  compactHome?: Placement;
   ink?: "tone" | "navy";
   size?: "s" | "m";
-  anchor?: AnchorSpec;
 };
 
 const PILL_REACH = { s: 30, m: 40 } as const;
 
-export const pill = ({ id, label, tone, tilt, home, compactHome, ink, size = "m", anchor }: PillOptions): TrinketSpec => ({
+export const pill = ({ id, label, tone, tilt, ink, size = "m", ...staging }: PillOptions): TrinketSpec => ({
   id,
-  home,
-  compactHome,
-  anchor,
+  ...staging,
   size: 0,
   radius: PILL_REACH[size],
   mass: 1.4,
@@ -58,9 +54,11 @@ export const pill = ({ id, label, tone, tilt, home, compactHome, ink, size = "m"
   ),
 });
 
-export const sticker = (id: string, home: Placement, size = 112): TrinketSpec => ({
+type StickerOptions = Staging & { id: string; size?: number };
+
+export const sticker = ({ id, size = 112, ...staging }: StickerOptions): TrinketSpec => ({
   id,
-  home,
+  ...staging,
   size,
   radius: size * 0.48,
   mass: 2,
@@ -68,7 +66,7 @@ export const sticker = (id: string, home: Placement, size = 112): TrinketSpec =>
   render: () => <Sticker text="babaluum · mentes inquietas · babaluum · mentes inquietas ·" />,
 });
 
-type CompanionOptions = { anchor?: AnchorSpec; home?: Placement; compactHome?: Placement; size?: number; roams?: boolean };
+type CompanionOptions = Partial<Staging> & { size?: number; roams?: boolean };
 
 type CompanionKind = { id: string; size: number; reach: number; mass: number; seed: number; render: NpcSpec["render"] };
 
@@ -76,12 +74,11 @@ const CENTER: Placement = { x: 0.5, y: 0.5 };
 
 const companion =
   (kind: CompanionKind) =>
-  ({ anchor, home = CENTER, compactHome, size = kind.size, roams = !anchor }: CompanionOptions = {}): NpcSpec => ({
+  ({ home = CENTER, size = kind.size, roams, ...staging }: CompanionOptions = {}): NpcSpec => ({
     id: kind.id,
-    temperament: roams ? "roamer" : "anchored",
-    anchor,
+    temperament: (roams ?? !staging.anchor) ? "roamer" : "anchored",
+    ...staging,
     home,
-    compactHome,
     size,
     radius: size * kind.reach,
     mass: kind.mass,

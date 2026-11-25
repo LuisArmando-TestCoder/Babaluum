@@ -12,8 +12,12 @@ export default {
     "max-nesting-depth": [3, { ignoreAtRules: ["include", "media", "supports"] }],
     "selector-max-compound-selectors": 4,
     "declaration-property-value-disallowed-list": [
-      { "z-index": ["/^-?\\d+$/"], transition: ["/all/"] },
-      { message: "Use z-index tokens and name the transitioned properties." },
+      {
+        "z-index": ["/^-?\\d+$/"],
+        transition: ["/all/"],
+        "font-size": ["/^0?\\.(?:[0-6]\\d*|7[0-4]\\d*)rem$/", "/^(?:\\d|1[01])(?:\\.\\d+)?px$/"],
+      },
+      { message: "Use z-index tokens, name the transitioned properties, and keep text at 12px (0.75rem) or larger so it reads on phones." },
     ],
     "scss/at-use-no-unnamespaced": null,
     "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",

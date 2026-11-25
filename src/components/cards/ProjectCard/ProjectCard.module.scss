@@ -26,5 +26,7 @@
 }
 
 .summary {
+  @include line-clamp(4);
+
   margin: 0;
 }

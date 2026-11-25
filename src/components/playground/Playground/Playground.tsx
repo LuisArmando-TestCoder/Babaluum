@@ -59,14 +59,14 @@ export const Playground = ({ npcs = [], trinkets = [], className, children }: Pl
       onPointerDown={poke}
     >
       {children}
-      <motion.div className={styles.layer} style={{ opacity: simulation.visible }} aria-hidden="true">
+      <motion.div data-cast-layer className={styles.layer} style={{ opacity: simulation.visible }} aria-hidden="true">
         {simulation.trinketViews.map(({ spec, motion: values }) => (
-          <BodyView key={spec.id} motion={values} size={spec.size}>
+          <BodyView key={spec.id} id={spec.id} motion={values} size={spec.size}>
             {spec.render(values.pose.energy)}
           </BodyView>
         ))}
         {simulation.npcViews.map(({ spec, motion: values }) => (
-          <BodyView key={spec.id} motion={values} size={spec.size}>
+          <BodyView key={spec.id} id={spec.id} motion={values} size={spec.size}>
             {spec.render(values.pose)}
           </BodyView>
         ))}

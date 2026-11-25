@@ -43,6 +43,10 @@
   color: color("sky");
 }
 
+.word {
+  white-space: nowrap;
+}
+
 .slot {
   display: inline-block;
   width: 0.56em;
